@@ -1,0 +1,41 @@
+generator mongodb {
+  provider = "prisma-client-js"
+  output   = "./generated/mongodb"
+}
+
+datasource mongodb {
+  provider = "mongodb"
+  url      = env("DATABASE_URL_MONGODB")
+}
+
+//MongoDB Models
+model Destination {
+  id          String   @id @default(auto()) @map("_id") @mongodb.ObjectId
+  name        String
+  images      String[]
+  country     String
+  city        String
+  continent   String
+  description String
+  price       Int
+  duration    Int
+  highlights  String[]
+  text        String[]
+}
+
+model Review {
+  id          String @id @default(auto()) @map("_id") @mongodb.ObjectId
+  userId      Int
+  destination String
+  rating      Int
+  comment     String
+}
+
+/**
+ * model Log {
+ * id        String @id @default(auto()) @map("_id")
+ * eventType String
+ * message   String
+ * createdAt DateTime @default(now())
+ * }
+ */

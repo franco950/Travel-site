@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/mysql"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// MySQL Models
+model User {
+  id        Int    @id @default(autoincrement())
+  firstname String
+  lastname  String
+  email     String @unique
+  password  String
+  phone     String @db.VarChar(20)
+}
+
+model Flight {
+  id            Int    @id @default(autoincrement())
+  airline       String
+  price         Float
+  class         String
+  origin        String
+  destination   String
+  departuretime Int
+  arrivaltime   Int
+  slots         Int
+}
+
+model Transport {
+  id          Int    @id @default(autoincrement())
+  mode        String
+  company     String
+  price       String
+  origin      String
+  destination String
+  slots       Int
+}
+
+model Hotel {
+  id    Int    @id @default(autoincrement())
+  name  String
+  class String
+  price Int
+  slots Int
+  beds  Int
+}
