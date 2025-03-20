@@ -135,7 +135,8 @@ exports.Prisma.FlightScalarFieldEnum = {
   destination: 'destination',
   departuretime: 'departuretime',
   arrivaltime: 'arrivaltime',
-  slots: 'slots'
+  slots: 'slots',
+  departuredate: 'departuredate'
 };
 
 exports.Prisma.TransportScalarFieldEnum = {
@@ -151,10 +152,20 @@ exports.Prisma.TransportScalarFieldEnum = {
 exports.Prisma.HotelScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  city: 'city',
   class: 'class',
   price: 'price',
   slots: 'slots',
   beds: 'beds'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  userid: 'userid',
+  destinationid: 'destinationid',
+  flightid: 'flightid',
+  hotelid: 'hotelid',
+  transportid: 'transportid'
 };
 
 exports.Prisma.SortOrder = {
@@ -180,13 +191,13 @@ exports.Prisma.FlightOrderByRelevanceFieldEnum = {
 exports.Prisma.TransportOrderByRelevanceFieldEnum = {
   mode: 'mode',
   company: 'company',
-  price: 'price',
   origin: 'origin',
   destination: 'destination'
 };
 
 exports.Prisma.HotelOrderByRelevanceFieldEnum = {
   name: 'name',
+  city: 'city',
   class: 'class'
 };
 
@@ -195,7 +206,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Flight: 'Flight',
   Transport: 'Transport',
-  Hotel: 'Hotel'
+  Hotel: 'Hotel',
+  Order: 'Order'
 };
 
 /**

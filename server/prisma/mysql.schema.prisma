@@ -25,7 +25,7 @@ model User {
 }
 
 model Flight {
-  id            Int    @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
   airline       String
   price         Float
   class         String
@@ -34,13 +34,14 @@ model Flight {
   departuretime Int
   arrivaltime   Int
   slots         Int
+  departuredate DateTime
 }
 
 model Transport {
   id          Int    @id @default(autoincrement())
   mode        String
   company     String
-  price       String
+  price       Float  
   origin      String
   destination String
   slots       Int
@@ -49,8 +50,18 @@ model Transport {
 model Hotel {
   id    Int    @id @default(autoincrement())
   name  String
+  city  String
   class String
-  price Int
+  price Float 
   slots Int
   beds  Int
+}
+
+model Order {
+  id    Int    @id @default(autoincrement())
+  userid   Int
+  destinationid Int
+  flightid Int
+  hotelid Int
+  transportid Int
 }

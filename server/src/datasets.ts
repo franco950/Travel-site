@@ -15,6 +15,7 @@ type User = {
     class: string;
     origin: string;
     destination: string;
+    departuredate: Date; 
     departuretime: number;
     arrivaltime: number;
     slots: number;
@@ -24,7 +25,7 @@ type User = {
     id?: number;
     mode: string;
     company: string;
-    price: string;
+    price: number; 
     origin: string;
     destination: string;
     slots: number;
@@ -37,7 +38,9 @@ type User = {
     price: number;
     slots: number;
     beds: number;
+    city: string; 
   };
+  
   type Destination = {
     id?: string;
     name: string;
@@ -77,46 +80,107 @@ type User = {
       { firstname: "Leo", lastname: "Martin", email: "leo.martin@example.com", password: "leopass", phone: "9567890123" },
       { firstname: "Mia", lastname: "Clark", email: "mia.clark@example.com", password: "miapass", phone: "9678901234" }
   ];
-
   export const flights: Flight[] = [
-    { airline: "Airways A", price: 299.99, class: "Economy", origin: "New York", destination: "London", departuretime: 1400, arrivaltime: 2200, slots: 50 },
-    { airline: "Airways B", price: 499.99, class: "Business", origin: "Los Angeles", destination: "Tokyo", departuretime: 1600, arrivaltime: 600, slots: 30 },
-    { airline: "SkyJet", price: 399.99, class: "Economy", origin: "Paris", destination: "Dubai", departuretime: 1200, arrivaltime: 2000, slots: 40 },
-    { airline: "Cloud Airlines", price: 299.99, class: "Economy", origin: "Berlin", destination: "New York", departuretime: 1800, arrivaltime: 600, slots: 45 },
-    { airline: "FastFlight", price: 549.99, class: "First", origin: "San Francisco", destination: "Sydney", departuretime: 2300, arrivaltime: 1100, slots: 20 },
-    { airline: "Air Elite", price: 450.99, class: "Business", origin: "Toronto", destination: "Dubai", departuretime: 1700, arrivaltime: 300, slots: 25 },
-    { airline: "Blue Skies", price: 280.99, class: "Economy", origin: "Chicago", destination: "Mexico City", departuretime: 1300, arrivaltime: 1700, slots: 35 },
-    { airline: "Eagle Air", price: 320.00, class: "Economy", origin: "Madrid", destination: "Rome", departuretime: 900, arrivaltime: 1100, slots: 60 },
-    { airline: "JetGo", price: 500.99, class: "Business", origin: "Boston", destination: "Amsterdam", departuretime: 2200, arrivaltime: 700, slots: 25 },
-    { airline: "FlyAway", price: 270.99, class: "Economy", origin: "Hong Kong", destination: "Bangkok", departuretime: 1100, arrivaltime: 1400, slots: 55 }
+    { airline: "Airways A", price: 299.99, class: "Economy", origin: "New York", destination: "Paris", departuredate: new Date("2024-04-20T14:00:00Z"), departuretime: 1400, arrivaltime: 2200, slots: 50 },
+    { airline: "SkyJet", price: 310.50, class: "Business", origin: "Los Angeles", destination: "Paris", departuredate: new Date("2024-04-22T16:00:00Z"), departuretime: 1600, arrivaltime: 400, slots: 35 },
+    { airline: "Cloud Airlines", price: 280.00, class: "Economy", origin: "Toronto", destination: "Paris", departuredate: new Date("2024-04-23T09:00:00Z"), departuretime: 900, arrivaltime: 2100, slots: 40 },
+  
+    { airline: "Airways B", price: 499.99, class: "Business", origin: "Los Angeles", destination: "Dubai", departuredate: new Date("2024-04-21T16:00:00Z"), departuretime: 1600, arrivaltime: 600, slots: 30 },
+    { airline: "Emirates", price: 520.00, class: "First", origin: "London", destination: "Dubai", departuredate: new Date("2024-04-24T17:00:00Z"), departuretime: 1700, arrivaltime: 300, slots: 20 },
+    { airline: "FlyAway", price: 450.99, class: "Economy", origin: "Tokyo", destination: "Dubai", departuredate: new Date("2024-04-25T12:00:00Z"), departuretime: 1200, arrivaltime: 2300, slots: 25 },
+  
+    { airline: "SkyJet", price: 399.99, class: "Economy", origin: "Paris", destination: "Tokyo", departuredate: new Date("2024-04-22T12:00:00Z"), departuretime: 1200, arrivaltime: 2000, slots: 40 },
+    { airline: "Japan Airlines", price: 420.00, class: "Business", origin: "New York", destination: "Tokyo", departuredate: new Date("2024-04-27T22:00:00Z"), departuretime: 2200, arrivaltime: 600, slots: 30 },
+    { airline: "Cloud Airlines", price: 380.00, class: "Economy", origin: "Berlin", destination: "Tokyo", departuredate: new Date("2024-04-29T14:00:00Z"), departuretime: 1400, arrivaltime: 2300, slots: 45 },
+  
+    { airline: "Cloud Airlines", price: 299.99, class: "Economy", origin: "Berlin", destination: "Rome", departuredate: new Date("2024-04-23T18:00:00Z"), departuretime: 1800, arrivaltime: 600, slots: 45 },
+    { airline: "FastFlight", price: 330.00, class: "Economy", origin: "Madrid", destination: "Rome", departuredate: new Date("2024-04-26T10:00:00Z"), departuretime: 1000, arrivaltime: 1500, slots: 40 },
+    { airline: "JetGo", price: 310.50, class: "Business", origin: "London", destination: "Rome", departuredate: new Date("2024-04-28T13:00:00Z"), departuretime: 1300, arrivaltime: 1700, slots: 35 },
+  
+    { airline: "FastFlight", price: 549.99, class: "First", origin: "San Francisco", destination: "Cape Town", departuredate: new Date("2024-04-24T23:00:00Z"), departuretime: 2300, arrivaltime: 1100, slots: 20 },
+    { airline: "Blue Skies", price: 570.00, class: "Business", origin: "New York", destination: "Cape Town", departuredate: new Date("2024-04-27T19:00:00Z"), departuretime: 1900, arrivaltime: 900, slots: 30 },
+  
+    { airline: "Air Elite", price: 450.99, class: "Business", origin: "Toronto", destination: "Sydney", departuredate: new Date("2024-04-25T17:00:00Z"), departuretime: 1700, arrivaltime: 300, slots: 25 },
+    { airline: "Qantas", price: 480.00, class: "Economy", origin: "Los Angeles", destination: "Sydney", departuredate: new Date("2024-04-28T20:00:00Z"), departuretime: 2000, arrivaltime: 700, slots: 40 },
+  
+    { airline: "Eagle Air", price: 320.00, class: "Economy", origin: "Madrid", destination: "cusco", departuredate: new Date("2024-04-27T09:00:00Z"), departuretime: 900, arrivaltime: 1100, slots: 60 },
+    { airline: "JetGo", price: 350.50, class: "Economy", origin: "Miami", destination: "cusco", departuredate: new Date("2024-04-29T08:00:00Z"), departuretime: 800, arrivaltime: 1000, slots: 40 },
+  
+    { airline: "JetGo", price: 500.99, class: "Business", origin: "Boston", destination: "Bali", departuredate: new Date("2024-04-28T22:00:00Z"), departuretime: 2200, arrivaltime: 700, slots: 25 },
+    { airline: "FlyAway", price: 480.00, class: "Economy", origin: "Singapore", destination: "Bali", departuredate: new Date("2024-04-30T13:00:00Z"), departuretime: 1300, arrivaltime: 1600, slots: 50 },
+    { airline: "FlyAway", price: 270.99, class: "Economy", origin: "Hong Kong", destination: "Santorini", departuredate: new Date("2024-04-29T11:00:00Z"), departuretime: 1100, arrivaltime: 1400, slots: 55 },
+    { airline: "Aegean Airlines", price: 290.00, class: "Economy", origin: "Athens", destination: "Santorini", departuredate: new Date("2024-05-01T09:00:00Z"), departuretime: 900, arrivaltime: 1030, slots: 40 },
+    { airline: "FlyAway", price: 270.99, class: "Economy", origin: "Hong Kong", destination: "New York", departuredate: new Date("2024-04-29T11:00:00Z"), departuretime: 1100, arrivaltime: 1400, slots: 55 },
+    { airline: "Aegean Airlines", price: 290.00, class: "Economy", origin: "Athens", destination: "New York", departuredate: new Date("2024-05-01T09:00:00Z"), departuretime: 900, arrivaltime: 1030, slots: 40 }
+  
+    
   ];
+  
   
   export const transports: Transport[] = [
-    { mode: "Bus", company: "CityTransit", price: "10.99", origin: "New York", destination: "Boston", slots: 50 },
-    { mode: "Train", company: "Railway Express", price: "25.50", origin: "London", destination: "Manchester", slots: 100 },
-    { mode: "Car Rental", company: "Rent-a-Car", price: "45.00", origin: "Los Angeles", destination: "San Francisco", slots: 20 },
-    { mode: "Ferry", company: "Sea Link", price: "30.00", origin: "Athens", destination: "Santorini", slots: 70 },
-    { mode: "Bus", company: "QuickBus", price: "15.99", origin: "Berlin", destination: "Munich", slots: 40 },
-    { mode: "Train", company: "Speed Rail", price: "40.00", origin: "Paris", destination: "Brussels", slots: 80 },
-    { mode: "Car Rental", company: "GoDrive", price: "55.00", origin: "Rome", destination: "Florence", slots: 10 },
-    { mode: "Bus", company: "FastTrack", price: "12.50", origin: "Madrid", destination: "Barcelona", slots: 60 },
-    { mode: "Ferry", company: "Ocean Liner", price: "50.00", origin: "Venice", destination: "Dubrovnik", slots: 30 },
-    { mode: "Train", company: "EuroRail", price: "65.00", origin: "Amsterdam", destination: "Berlin", slots: 90 }
+    { mode: "Bus", company: "CityTransit", price: 10.99, origin: "Paris", destination: "Versailles", slots: 50 }, // Short bus ride from Paris
+    { mode: "Train", company: "Railway Express", price: 25.50, origin: "Dubai", destination: "Abu Dhabi", slots: 100 }, // Nearby city with famous attractions
+    { mode: "Car Rental", company: "Rent-a-Car", price: 45.00, origin: "Tokyo", destination: "Hakone", slots: 20 }, // Scenic hot spring destination near Tokyo
+    { mode: "Ferry", company: "Sea Link", price: 30.00, origin: "Rome", destination: "Capri", slots: 70 }, // Famous island off Italy’s coast
+    { mode: "Bus", company: "QuickBus", price: 15.99, origin: "Cape Town", destination: "Stellenbosch", slots: 40 }, // Wine region near Cape Town
+    { mode: "Train", company: "Speed Rail", price: 40.00, origin: "Sydney", destination: "Blue Mountains", slots: 80 }, // Popular nature retreat near Sydney
+    { mode: "Car Rental", company: "GoDrive", price: 55.00, origin: "New York", destination: "Niagara Falls", slots: 10 }, // Iconic natural wonder near NYC
+    { mode: "Bus", company: "FastTrack", price: 12.50, origin: "Cusco", destination: "Machu Picchu", slots: 60 }, // Closest city to Machu Picchu
+    { mode: "Ferry", company: "Ocean Liner", price: 50.00, origin: "Bali", destination: "Gili Islands", slots: 30 }, // Beach paradise accessible by ferry
+    { mode: "Train", company: "EuroRail", price: 65.00, origin: "Santorini", destination: "Athens", slots: 90 } // Logical connection in Greece
   ];
-  
   export const hotels: Hotel[] = [
-    { name: "Grand Hotel", class: "5-Star", price: 200, slots: 50, beds: 100 },
-    { name: "Ocean View", class: "4-Star", price: 150, slots: 30, beds: 60 },
-    { name: "Mountain Lodge", class: "3-Star", price: 100, slots: 20, beds: 40 },
-    { name: "City Inn", class: "4-Star", price: 120, slots: 40, beds: 80 },
-    { name: "Skyline Suites", class: "5-Star", price: 250, slots: 35, beds: 70 },
-    { name: "Sunset Resort", class: "5-Star", price: 180, slots: 25, beds: 50 },
-    { name: "Budget Stay", class: "2-Star", price: 80, slots: 15, beds: 30 },
-    { name: "Royal Palace", class: "5-Star", price: 300, slots: 20, beds: 40 },
-    { name: "Lakeside Retreat", class: "4-Star", price: 140, slots: 30, beds: 60 },
-    { name: "Winter Lodge", class: "3-Star", price: 110, slots: 25, beds: 50 }
-  ];
+    // Paris
+    { name: "Grand Hotel", class: "5-Star", price: 200, slots: 50, beds: 1, city: "Paris" },
+    { name: "Eiffel View Suites", class: "4-Star", price: 180, slots: 40, beds: 2, city: "Paris" },
+    { name: "Louvre Inn", class: "3-Star", price: 130, slots: 30, beds: 3, city: "Paris" },
   
+    // Dubai
+    { name: "Ocean View", class: "4-Star", price: 150, slots: 30, beds: 2, city: "Dubai" },
+    { name: "Burj Grand", class: "5-Star", price: 300, slots: 20, beds: 1, city: "Dubai" },
+    { name: "Desert Lodge", class: "3-Star", price: 120, slots: 25, beds: 3, city: "Dubai" },
+  
+    // Tokyo
+    { name: "Mountain Lodge", class: "3-Star", price: 100, slots: 20, beds: 2, city: "Tokyo" },
+    { name: "Shinjuku Stay", class: "4-Star", price: 170, slots: 30, beds: 1, city: "Tokyo" },
+    { name: "Cherry Blossom Hotel", class: "5-Star", price: 250, slots: 15, beds: 2, city: "Tokyo" },
+  
+    // Rome
+    { name: "City Inn", class: "4-Star", price: 120, slots: 40, beds: 3, city: "Rome" },
+    { name: "Colosseum Luxury", class: "5-Star", price: 280, slots: 25, beds: 1, city: "Rome" },
+    { name: "Vatican Suites", class: "3-Star", price: 110, slots: 35, beds: 2, city: "Rome" },
+  
+    // Cape Town
+    { name: "Skyline Suites", class: "5-Star", price: 250, slots: 35, beds: 1, city: "Cape Town" },
+    { name: "Table Mountain Lodge", class: "4-Star", price: 180, slots: 30, beds: 2, city: "Cape Town" },
+    { name: "Harbor View", class: "3-Star", price: 140, slots: 25, beds: 3, city: "Cape Town" },
+  
+    // Sydney
+    { name: "Sunset Resort", class: "5-Star", price: 180, slots: 25, beds: 1, city: "Sydney" },
+    { name: "Harbor Bridge Inn", class: "4-Star", price: 160, slots: 35, beds: 2, city: "Sydney" },
+    { name: "Bondi Beach Stay", class: "3-Star", price: 120, slots: 20, beds: 3, city: "Sydney" },
+  
+    // New York
+    { name: "Budget Stay", class: "2-Star", price: 80, slots: 15, beds: 3, city: "New York" },
+    { name: "Times Square Suites", class: "5-Star", price: 320, slots: 20, beds: 1, city: "New York" },
+    { name: "Central Park Hotel", class: "4-Star", price: 200, slots: 25, beds: 2, city: "New York" },
+  
+    // Machu Picchu
+    { name: "Royal Palace", class: "5-Star", price: 300, slots: 20, beds: 1, city: "Cusco" },
+    { name: "Inca Trail Lodge", class: "4-Star", price: 220, slots: 25, beds: 2, city: "Cusco" },
+    { name: "Highland Stay", class: "3-Star", price: 150, slots: 30, beds: 3, city: "Cusco" },
+  
+    // Bali
+    { name: "Lakeside Retreat", class: "4-Star", price: 140, slots: 30, beds: 2, city: "Bali" },
+    { name: "Tropical Paradise", class: "5-Star", price: 280, slots: 25, beds: 1, city: "Bali" },
+    { name: "Jungle View Resort", class: "3-Star", price: 110, slots: 20, beds: 3, city: "Bali" },
+  
+    // Santorini
+    { name: "Winter Lodge", class: "3-Star", price: 110, slots: 25, beds: 2, city: "Santorini" },
+    { name: "Blue Dome Suites", class: "5-Star", price: 320, slots: 20, beds: 1, city: "Santorini" },
+    { name: "Cliffside Retreat", class: "4-Star", price: 200, slots: 30, beds: 2, city: "Santorini" }
+  ];
+   
   export const destinations: Destination[] = [
     {
       name: "Santorini",
