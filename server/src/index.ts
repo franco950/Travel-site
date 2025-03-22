@@ -92,9 +92,9 @@ app.get('/destinations/:id',async(req,res)=>{
   }
 });
 
-app.get('/booking',async(req: Request, res: Response)=>{
+app.get('/booking/:city',async(req: Request, res: Response)=>{
   try{
-    const city=req.headers['city'] as string | undefined;
+    const city=req.params.city
     if (!city || typeof city !== 'string') {
       res.status(400).json({ error: "Invalid city parameter" });}
       

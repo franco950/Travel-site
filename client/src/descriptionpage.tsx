@@ -16,6 +16,7 @@ function DescriptionPage(){
     return (<>
 
     <Link to={"/"} ><button>go back</button></Link>
+    <Link to={`/booking/${id}/${destination.city}`}><button>Book now</button></Link>
     <>{destination.text}</>
     </>)
 }
