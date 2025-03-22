@@ -57,7 +57,7 @@ app.get('/home',async(req,res)=>{
     const destinations = await mongodbPrisma.destination.findMany();
     const reviews = await mongodbPrisma.review.findMany();
     res.json({destinations,reviews});
-
+    console.log('destinations sent')
   }catch(error){
     console.error("Error in /home",error);
     res.status(500).json({message:"Internal server error"});
