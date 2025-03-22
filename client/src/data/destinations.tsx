@@ -22,9 +22,32 @@ export type Review = {
   comment: string;
 };
 
+export function getSingleDestination(id:string){
+  const [destination, setDestination] = useState<Destination>();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/destinations/${id}`)
+    
+    .then((response) => response.json())
+      .then((aboutData) => {
+        setDestination(aboutData.mydestination || "");
+        
+        console.log('getdestination works')
+      })
+      .catch((error) => {
+        console.error("Unexpected error fetching description:", error);
+        setError("Failed to fetch desctiption.");
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  return { destination, loading, error };
+      
+}
 export function useDestinations() {
   const [destinations, setDestinations] = useState<Destination[]>([]);
-  const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,7 +56,6 @@ export function useDestinations() {
       .then((response) => response.json())
       .then((homeData) => {
         setDestinations(homeData.destinations || []);
-        setReviews(homeData.reviews || []);
         console.log('useDestinations works')
       })
       .catch((error) => {
@@ -43,7 +65,7 @@ export function useDestinations() {
       .finally(() => setLoading(false));
   }, []);
 
-  return { destinations, reviews, loading, error };
+  return { destinations,  loading, error };
 }
 /*
 enum SortBy {
@@ -58,8 +80,8 @@ export function searchDestinations(
     countryquery?: string;
     cityquery?: string;
     continentquery?: string;
-    pricequery?: [number, number];
-    durationquery?: [number, number];
+    pricequery?: number;
+    durationquery?: number;
   } = {}
 ) {
   if (!filters.namequery && !filters.countryquery && !filters.cityquery && !filters.continentquery && !filters.pricequery && !filters.durationquery) {
@@ -82,13 +104,13 @@ export function searchDestinations(
     }
     if (
       filters.pricequery &&
-      (destination.price < filters.pricequery[0] || destination.price > filters.pricequery[1])
+      (destination.price !< filters.pricequery)
     ) {
       return false;
     }
     if (
       filters.durationquery &&
-      (destination.duration < filters.durationquery[0] || destination.duration > filters.durationquery[1])
+      (destination.duration !< filters.durationquery )
     ) {
       return false;
     }

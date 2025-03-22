@@ -906,6 +906,36 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type DestinationCountOutputType
+   */
+
+  export type DestinationCountOutputType = {
+    review: number
+  }
+
+  export type DestinationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    review?: boolean | DestinationCountOutputTypeCountReviewArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DestinationCountOutputType without action
+   */
+  export type DestinationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DestinationCountOutputType
+     */
+    select?: DestinationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DestinationCountOutputType without action
+   */
+  export type DestinationCountOutputTypeCountReviewArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReviewWhereInput
+  }
+
 
   /**
    * Models
@@ -1149,6 +1179,8 @@ export namespace Prisma {
     duration?: boolean
     highlights?: boolean
     text?: boolean
+    review?: boolean | Destination$reviewArgs<ExtArgs>
+    _count?: boolean | DestinationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["destination"]>
 
 
@@ -1168,10 +1200,16 @@ export namespace Prisma {
   }
 
   export type DestinationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "images" | "country" | "city" | "continent" | "description" | "price" | "duration" | "highlights" | "text", ExtArgs["result"]["destination"]>
+  export type DestinationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    review?: boolean | Destination$reviewArgs<ExtArgs>
+    _count?: boolean | DestinationCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $DestinationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Destination"
-    objects: {}
+    objects: {
+      review: Prisma.$ReviewPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
@@ -1547,6 +1585,7 @@ export namespace Prisma {
    */
   export interface Prisma__DestinationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    review<T extends Destination$reviewArgs<ExtArgs> = {}>(args?: Subset<T, Destination$reviewArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1604,6 +1643,10 @@ export namespace Prisma {
      */
     omit?: DestinationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
      * Filter, which Destination to fetch.
      */
     where: DestinationWhereUniqueInput
@@ -1622,6 +1665,10 @@ export namespace Prisma {
      */
     omit?: DestinationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
      * Filter, which Destination to fetch.
      */
     where: DestinationWhereUniqueInput
@@ -1639,6 +1686,10 @@ export namespace Prisma {
      * Omit specific fields from the Destination
      */
     omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
     /**
      * Filter, which Destination to fetch.
      */
@@ -1688,6 +1739,10 @@ export namespace Prisma {
      */
     omit?: DestinationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
      * Filter, which Destination to fetch.
      */
     where?: DestinationWhereInput
@@ -1736,6 +1791,10 @@ export namespace Prisma {
      */
     omit?: DestinationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
      * Filter, which Destinations to fetch.
      */
     where?: DestinationWhereInput
@@ -1779,6 +1838,10 @@ export namespace Prisma {
      */
     omit?: DestinationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
      * The data needed to create a Destination.
      */
     data: XOR<DestinationCreateInput, DestinationUncheckedCreateInput>
@@ -1806,6 +1869,10 @@ export namespace Prisma {
      * Omit specific fields from the Destination
      */
     omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
     /**
      * The data needed to update a Destination.
      */
@@ -1847,6 +1914,10 @@ export namespace Prisma {
      */
     omit?: DestinationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
+    /**
      * The filter to search for the Destination to update in case it exists.
      */
     where: DestinationWhereUniqueInput
@@ -1872,6 +1943,10 @@ export namespace Prisma {
      * Omit specific fields from the Destination
      */
     omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
     /**
      * Filter which Destination to delete.
      */
@@ -1921,6 +1996,30 @@ export namespace Prisma {
   }
 
   /**
+   * Destination.review
+   */
+  export type Destination$reviewArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Review
+     */
+    select?: ReviewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Review
+     */
+    omit?: ReviewOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
+    where?: ReviewWhereInput
+    orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
+    cursor?: ReviewWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
+  }
+
+  /**
    * Destination without action
    */
   export type DestinationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1932,6 +2031,10 @@ export namespace Prisma {
      * Omit specific fields from the Destination
      */
     omit?: DestinationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DestinationInclude<ExtArgs> | null
   }
 
 
@@ -1963,6 +2066,7 @@ export namespace Prisma {
     destination: string | null
     rating: number | null
     comment: string | null
+    destinationid: string | null
   }
 
   export type ReviewMaxAggregateOutputType = {
@@ -1971,6 +2075,7 @@ export namespace Prisma {
     destination: string | null
     rating: number | null
     comment: string | null
+    destinationid: string | null
   }
 
   export type ReviewCountAggregateOutputType = {
@@ -1979,6 +2084,7 @@ export namespace Prisma {
     destination: number
     rating: number
     comment: number
+    destinationid: number
     _all: number
   }
 
@@ -1999,6 +2105,7 @@ export namespace Prisma {
     destination?: true
     rating?: true
     comment?: true
+    destinationid?: true
   }
 
   export type ReviewMaxAggregateInputType = {
@@ -2007,6 +2114,7 @@ export namespace Prisma {
     destination?: true
     rating?: true
     comment?: true
+    destinationid?: true
   }
 
   export type ReviewCountAggregateInputType = {
@@ -2015,6 +2123,7 @@ export namespace Prisma {
     destination?: true
     rating?: true
     comment?: true
+    destinationid?: true
     _all?: true
   }
 
@@ -2110,6 +2219,7 @@ export namespace Prisma {
     destination: string
     rating: number
     comment: string
+    destinationid: string
     _count: ReviewCountAggregateOutputType | null
     _avg: ReviewAvgAggregateOutputType | null
     _sum: ReviewSumAggregateOutputType | null
@@ -2137,6 +2247,8 @@ export namespace Prisma {
     destination?: boolean
     rating?: boolean
     comment?: boolean
+    destinationid?: boolean
+    destinationobj?: boolean | DestinationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
 
@@ -2147,19 +2259,26 @@ export namespace Prisma {
     destination?: boolean
     rating?: boolean
     comment?: boolean
+    destinationid?: boolean
   }
 
-  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "destination" | "rating" | "comment", ExtArgs["result"]["review"]>
+  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "destination" | "rating" | "comment" | "destinationid", ExtArgs["result"]["review"]>
+  export type ReviewInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    destinationobj?: boolean | DestinationDefaultArgs<ExtArgs>
+  }
 
   export type $ReviewPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Review"
-    objects: {}
+    objects: {
+      destinationobj: Prisma.$DestinationPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: number
       destination: string
       rating: number
       comment: string
+      destinationid: string
     }, ExtArgs["result"]["review"]>
     composites: {}
   }
@@ -2523,6 +2642,7 @@ export namespace Prisma {
    */
   export interface Prisma__ReviewClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    destinationobj<T extends DestinationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DestinationDefaultArgs<ExtArgs>>): Prisma__DestinationClient<$Result.GetResult<Prisma.$DestinationPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2557,6 +2677,7 @@ export namespace Prisma {
     readonly destination: FieldRef<"Review", 'String'>
     readonly rating: FieldRef<"Review", 'Int'>
     readonly comment: FieldRef<"Review", 'String'>
+    readonly destinationid: FieldRef<"Review", 'String'>
   }
     
 
@@ -2573,6 +2694,10 @@ export namespace Prisma {
      * Omit specific fields from the Review
      */
     omit?: ReviewOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
     /**
      * Filter, which Review to fetch.
      */
@@ -2592,6 +2717,10 @@ export namespace Prisma {
      */
     omit?: ReviewOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
+    /**
      * Filter, which Review to fetch.
      */
     where: ReviewWhereUniqueInput
@@ -2609,6 +2738,10 @@ export namespace Prisma {
      * Omit specific fields from the Review
      */
     omit?: ReviewOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
     /**
      * Filter, which Review to fetch.
      */
@@ -2658,6 +2791,10 @@ export namespace Prisma {
      */
     omit?: ReviewOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
+    /**
      * Filter, which Review to fetch.
      */
     where?: ReviewWhereInput
@@ -2706,6 +2843,10 @@ export namespace Prisma {
      */
     omit?: ReviewOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
+    /**
      * Filter, which Reviews to fetch.
      */
     where?: ReviewWhereInput
@@ -2749,6 +2890,10 @@ export namespace Prisma {
      */
     omit?: ReviewOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
+    /**
      * The data needed to create a Review.
      */
     data: XOR<ReviewCreateInput, ReviewUncheckedCreateInput>
@@ -2776,6 +2921,10 @@ export namespace Prisma {
      * Omit specific fields from the Review
      */
     omit?: ReviewOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
     /**
      * The data needed to update a Review.
      */
@@ -2817,6 +2966,10 @@ export namespace Prisma {
      */
     omit?: ReviewOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
+    /**
      * The filter to search for the Review to update in case it exists.
      */
     where: ReviewWhereUniqueInput
@@ -2842,6 +2995,10 @@ export namespace Prisma {
      * Omit specific fields from the Review
      */
     omit?: ReviewOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
     /**
      * Filter which Review to delete.
      */
@@ -2902,6 +3059,10 @@ export namespace Prisma {
      * Omit specific fields from the Review
      */
     omit?: ReviewOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
   }
 
 
@@ -2931,7 +3092,8 @@ export namespace Prisma {
     userId: 'userId',
     destination: 'destination',
     rating: 'rating',
-    comment: 'comment'
+    comment: 'comment',
+    destinationid: 'destinationid'
   };
 
   export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
@@ -3018,6 +3180,7 @@ export namespace Prisma {
     duration?: IntFilter<"Destination"> | number
     highlights?: StringNullableListFilter<"Destination">
     text?: StringNullableListFilter<"Destination">
+    review?: ReviewListRelationFilter
   }
 
   export type DestinationOrderByWithRelationInput = {
@@ -3032,6 +3195,7 @@ export namespace Prisma {
     duration?: SortOrder
     highlights?: SortOrder
     text?: SortOrder
+    review?: ReviewOrderByRelationAggregateInput
   }
 
   export type DestinationWhereUniqueInput = Prisma.AtLeast<{
@@ -3049,6 +3213,7 @@ export namespace Prisma {
     duration?: IntFilter<"Destination"> | number
     highlights?: StringNullableListFilter<"Destination">
     text?: StringNullableListFilter<"Destination">
+    review?: ReviewListRelationFilter
   }, "id">
 
   export type DestinationOrderByWithAggregationInput = {
@@ -3096,6 +3261,8 @@ export namespace Prisma {
     destination?: StringFilter<"Review"> | string
     rating?: IntFilter<"Review"> | number
     comment?: StringFilter<"Review"> | string
+    destinationid?: StringFilter<"Review"> | string
+    destinationobj?: XOR<DestinationScalarRelationFilter, DestinationWhereInput>
   }
 
   export type ReviewOrderByWithRelationInput = {
@@ -3104,6 +3271,8 @@ export namespace Prisma {
     destination?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    destinationid?: SortOrder
+    destinationobj?: DestinationOrderByWithRelationInput
   }
 
   export type ReviewWhereUniqueInput = Prisma.AtLeast<{
@@ -3115,6 +3284,8 @@ export namespace Prisma {
     destination?: StringFilter<"Review"> | string
     rating?: IntFilter<"Review"> | number
     comment?: StringFilter<"Review"> | string
+    destinationid?: StringFilter<"Review"> | string
+    destinationobj?: XOR<DestinationScalarRelationFilter, DestinationWhereInput>
   }, "id">
 
   export type ReviewOrderByWithAggregationInput = {
@@ -3123,6 +3294,7 @@ export namespace Prisma {
     destination?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    destinationid?: SortOrder
     _count?: ReviewCountOrderByAggregateInput
     _avg?: ReviewAvgOrderByAggregateInput
     _max?: ReviewMaxOrderByAggregateInput
@@ -3139,6 +3311,7 @@ export namespace Prisma {
     destination?: StringWithAggregatesFilter<"Review"> | string
     rating?: IntWithAggregatesFilter<"Review"> | number
     comment?: StringWithAggregatesFilter<"Review"> | string
+    destinationid?: StringWithAggregatesFilter<"Review"> | string
   }
 
   export type DestinationCreateInput = {
@@ -3153,6 +3326,7 @@ export namespace Prisma {
     duration: number
     highlights?: DestinationCreatehighlightsInput | string[]
     text?: DestinationCreatetextInput | string[]
+    review?: ReviewCreateNestedManyWithoutDestinationobjInput
   }
 
   export type DestinationUncheckedCreateInput = {
@@ -3167,6 +3341,7 @@ export namespace Prisma {
     duration: number
     highlights?: DestinationCreatehighlightsInput | string[]
     text?: DestinationCreatetextInput | string[]
+    review?: ReviewUncheckedCreateNestedManyWithoutDestinationobjInput
   }
 
   export type DestinationUpdateInput = {
@@ -3180,6 +3355,7 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     highlights?: DestinationUpdatehighlightsInput | string[]
     text?: DestinationUpdatetextInput | string[]
+    review?: ReviewUpdateManyWithoutDestinationobjNestedInput
   }
 
   export type DestinationUncheckedUpdateInput = {
@@ -3193,6 +3369,7 @@ export namespace Prisma {
     duration?: IntFieldUpdateOperationsInput | number
     highlights?: DestinationUpdatehighlightsInput | string[]
     text?: DestinationUpdatetextInput | string[]
+    review?: ReviewUncheckedUpdateManyWithoutDestinationobjNestedInput
   }
 
   export type DestinationCreateManyInput = {
@@ -3241,6 +3418,7 @@ export namespace Prisma {
     destination: string
     rating: number
     comment: string
+    destinationobj: DestinationCreateNestedOneWithoutReviewInput
   }
 
   export type ReviewUncheckedCreateInput = {
@@ -3249,6 +3427,7 @@ export namespace Prisma {
     destination: string
     rating: number
     comment: string
+    destinationid: string
   }
 
   export type ReviewUpdateInput = {
@@ -3256,6 +3435,7 @@ export namespace Prisma {
     destination?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    destinationobj?: DestinationUpdateOneRequiredWithoutReviewNestedInput
   }
 
   export type ReviewUncheckedUpdateInput = {
@@ -3263,6 +3443,7 @@ export namespace Prisma {
     destination?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    destinationid?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReviewCreateManyInput = {
@@ -3271,6 +3452,7 @@ export namespace Prisma {
     destination: string
     rating: number
     comment: string
+    destinationid: string
   }
 
   export type ReviewUpdateManyMutationInput = {
@@ -3285,6 +3467,7 @@ export namespace Prisma {
     destination?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     comment?: StringFieldUpdateOperationsInput | string
+    destinationid?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3319,6 +3502,16 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type ReviewListRelationFilter = {
+    every?: ReviewWhereInput
+    some?: ReviewWhereInput
+    none?: ReviewWhereInput
+  }
+
+  export type ReviewOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type DestinationCountOrderByAggregateInput = {
@@ -3401,12 +3594,18 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type DestinationScalarRelationFilter = {
+    is?: DestinationWhereInput
+    isNot?: DestinationWhereInput
+  }
+
   export type ReviewCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     destination?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type ReviewAvgOrderByAggregateInput = {
@@ -3420,6 +3619,7 @@ export namespace Prisma {
     destination?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type ReviewMinOrderByAggregateInput = {
@@ -3428,6 +3628,7 @@ export namespace Prisma {
     destination?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    destinationid?: SortOrder
   }
 
   export type ReviewSumOrderByAggregateInput = {
@@ -3445,6 +3646,20 @@ export namespace Prisma {
 
   export type DestinationCreatetextInput = {
     set: string[]
+  }
+
+  export type ReviewCreateNestedManyWithoutDestinationobjInput = {
+    create?: XOR<ReviewCreateWithoutDestinationobjInput, ReviewUncheckedCreateWithoutDestinationobjInput> | ReviewCreateWithoutDestinationobjInput[] | ReviewUncheckedCreateWithoutDestinationobjInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutDestinationobjInput | ReviewCreateOrConnectWithoutDestinationobjInput[]
+    createMany?: ReviewCreateManyDestinationobjInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+  }
+
+  export type ReviewUncheckedCreateNestedManyWithoutDestinationobjInput = {
+    create?: XOR<ReviewCreateWithoutDestinationobjInput, ReviewUncheckedCreateWithoutDestinationobjInput> | ReviewCreateWithoutDestinationobjInput[] | ReviewUncheckedCreateWithoutDestinationobjInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutDestinationobjInput | ReviewCreateOrConnectWithoutDestinationobjInput[]
+    createMany?: ReviewCreateManyDestinationobjInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3472,6 +3687,48 @@ export namespace Prisma {
   export type DestinationUpdatetextInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type ReviewUpdateManyWithoutDestinationobjNestedInput = {
+    create?: XOR<ReviewCreateWithoutDestinationobjInput, ReviewUncheckedCreateWithoutDestinationobjInput> | ReviewCreateWithoutDestinationobjInput[] | ReviewUncheckedCreateWithoutDestinationobjInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutDestinationobjInput | ReviewCreateOrConnectWithoutDestinationobjInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutDestinationobjInput | ReviewUpsertWithWhereUniqueWithoutDestinationobjInput[]
+    createMany?: ReviewCreateManyDestinationobjInputEnvelope
+    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutDestinationobjInput | ReviewUpdateWithWhereUniqueWithoutDestinationobjInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutDestinationobjInput | ReviewUpdateManyWithWhereWithoutDestinationobjInput[]
+    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+  }
+
+  export type ReviewUncheckedUpdateManyWithoutDestinationobjNestedInput = {
+    create?: XOR<ReviewCreateWithoutDestinationobjInput, ReviewUncheckedCreateWithoutDestinationobjInput> | ReviewCreateWithoutDestinationobjInput[] | ReviewUncheckedCreateWithoutDestinationobjInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutDestinationobjInput | ReviewCreateOrConnectWithoutDestinationobjInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutDestinationobjInput | ReviewUpsertWithWhereUniqueWithoutDestinationobjInput[]
+    createMany?: ReviewCreateManyDestinationobjInputEnvelope
+    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutDestinationobjInput | ReviewUpdateWithWhereUniqueWithoutDestinationobjInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutDestinationobjInput | ReviewUpdateManyWithWhereWithoutDestinationobjInput[]
+    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+  }
+
+  export type DestinationCreateNestedOneWithoutReviewInput = {
+    create?: XOR<DestinationCreateWithoutReviewInput, DestinationUncheckedCreateWithoutReviewInput>
+    connectOrCreate?: DestinationCreateOrConnectWithoutReviewInput
+    connect?: DestinationWhereUniqueInput
+  }
+
+  export type DestinationUpdateOneRequiredWithoutReviewNestedInput = {
+    create?: XOR<DestinationCreateWithoutReviewInput, DestinationUncheckedCreateWithoutReviewInput>
+    connectOrCreate?: DestinationCreateOrConnectWithoutReviewInput
+    upsert?: DestinationUpsertWithoutReviewInput
+    connect?: DestinationWhereUniqueInput
+    update?: XOR<XOR<DestinationUpdateToOneWithWhereWithoutReviewInput, DestinationUpdateWithoutReviewInput>, DestinationUncheckedUpdateWithoutReviewInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3541,6 +3798,158 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type ReviewCreateWithoutDestinationobjInput = {
+    id?: string
+    userId: number
+    destination: string
+    rating: number
+    comment: string
+  }
+
+  export type ReviewUncheckedCreateWithoutDestinationobjInput = {
+    id?: string
+    userId: number
+    destination: string
+    rating: number
+    comment: string
+  }
+
+  export type ReviewCreateOrConnectWithoutDestinationobjInput = {
+    where: ReviewWhereUniqueInput
+    create: XOR<ReviewCreateWithoutDestinationobjInput, ReviewUncheckedCreateWithoutDestinationobjInput>
+  }
+
+  export type ReviewCreateManyDestinationobjInputEnvelope = {
+    data: ReviewCreateManyDestinationobjInput | ReviewCreateManyDestinationobjInput[]
+  }
+
+  export type ReviewUpsertWithWhereUniqueWithoutDestinationobjInput = {
+    where: ReviewWhereUniqueInput
+    update: XOR<ReviewUpdateWithoutDestinationobjInput, ReviewUncheckedUpdateWithoutDestinationobjInput>
+    create: XOR<ReviewCreateWithoutDestinationobjInput, ReviewUncheckedCreateWithoutDestinationobjInput>
+  }
+
+  export type ReviewUpdateWithWhereUniqueWithoutDestinationobjInput = {
+    where: ReviewWhereUniqueInput
+    data: XOR<ReviewUpdateWithoutDestinationobjInput, ReviewUncheckedUpdateWithoutDestinationobjInput>
+  }
+
+  export type ReviewUpdateManyWithWhereWithoutDestinationobjInput = {
+    where: ReviewScalarWhereInput
+    data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutDestinationobjInput>
+  }
+
+  export type ReviewScalarWhereInput = {
+    AND?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+    OR?: ReviewScalarWhereInput[]
+    NOT?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+    id?: StringFilter<"Review"> | string
+    userId?: IntFilter<"Review"> | number
+    destination?: StringFilter<"Review"> | string
+    rating?: IntFilter<"Review"> | number
+    comment?: StringFilter<"Review"> | string
+    destinationid?: StringFilter<"Review"> | string
+  }
+
+  export type DestinationCreateWithoutReviewInput = {
+    id?: string
+    name: string
+    images?: DestinationCreateimagesInput | string[]
+    country: string
+    city: string
+    continent: string
+    description: string
+    price: number
+    duration: number
+    highlights?: DestinationCreatehighlightsInput | string[]
+    text?: DestinationCreatetextInput | string[]
+  }
+
+  export type DestinationUncheckedCreateWithoutReviewInput = {
+    id?: string
+    name: string
+    images?: DestinationCreateimagesInput | string[]
+    country: string
+    city: string
+    continent: string
+    description: string
+    price: number
+    duration: number
+    highlights?: DestinationCreatehighlightsInput | string[]
+    text?: DestinationCreatetextInput | string[]
+  }
+
+  export type DestinationCreateOrConnectWithoutReviewInput = {
+    where: DestinationWhereUniqueInput
+    create: XOR<DestinationCreateWithoutReviewInput, DestinationUncheckedCreateWithoutReviewInput>
+  }
+
+  export type DestinationUpsertWithoutReviewInput = {
+    update: XOR<DestinationUpdateWithoutReviewInput, DestinationUncheckedUpdateWithoutReviewInput>
+    create: XOR<DestinationCreateWithoutReviewInput, DestinationUncheckedCreateWithoutReviewInput>
+    where?: DestinationWhereInput
+  }
+
+  export type DestinationUpdateToOneWithWhereWithoutReviewInput = {
+    where?: DestinationWhereInput
+    data: XOR<DestinationUpdateWithoutReviewInput, DestinationUncheckedUpdateWithoutReviewInput>
+  }
+
+  export type DestinationUpdateWithoutReviewInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    images?: DestinationUpdateimagesInput | string[]
+    country?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    continent?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
+    duration?: IntFieldUpdateOperationsInput | number
+    highlights?: DestinationUpdatehighlightsInput | string[]
+    text?: DestinationUpdatetextInput | string[]
+  }
+
+  export type DestinationUncheckedUpdateWithoutReviewInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    images?: DestinationUpdateimagesInput | string[]
+    country?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    continent?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: IntFieldUpdateOperationsInput | number
+    duration?: IntFieldUpdateOperationsInput | number
+    highlights?: DestinationUpdatehighlightsInput | string[]
+    text?: DestinationUpdatetextInput | string[]
+  }
+
+  export type ReviewCreateManyDestinationobjInput = {
+    id?: string
+    userId: number
+    destination: string
+    rating: number
+    comment: string
+  }
+
+  export type ReviewUpdateWithoutDestinationobjInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+    destination?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ReviewUncheckedUpdateWithoutDestinationobjInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+    destination?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ReviewUncheckedUpdateManyWithoutDestinationobjInput = {
+    userId?: IntFieldUpdateOperationsInput | number
+    destination?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    comment?: StringFieldUpdateOperationsInput | string
   }
 
 

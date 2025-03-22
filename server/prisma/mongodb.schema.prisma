@@ -21,14 +21,17 @@ model Destination {
   duration    Int
   highlights  String[]
   text        String[]
+  review      Review[]
 }
 
 model Review {
-  id          String @id @default(auto()) @map("_id") @mongodb.ObjectId
-  userId      Int
-  destination String
-  rating      Int
-  comment     String
+  id             String      @id @default(auto()) @map("_id") @mongodb.ObjectId
+  userId         Int
+  destination    String
+  rating         Int
+  comment        String
+  destinationobj Destination @relation(fields: [destinationid], references: [id])
+  destinationid  String      @mongodb.ObjectId
 }
 
 /**

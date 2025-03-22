@@ -61,6 +61,7 @@ type User = {
     destination: string;
     rating: number;
     comment: string;
+    destinationid: string;
   };
  
   export const users: User[] = [
@@ -304,16 +305,16 @@ type User = {
     }
   ];
   
-  export const reviews: Review[] = [
-    { userId: 1, destination: "Santorini", rating: 5, comment: "Absolutely stunning!" },
-    { userId: 2, destination: "Bali", rating: 4, comment: "Great beaches and friendly locals." },
-    { userId: 3, destination: "Paris", rating: 5, comment: "A dream come true, loved every moment." },
-    { userId: 4, destination: "Dubai", rating: 4, comment: "Luxurious and fun, but a bit expensive." },
-    { userId: 5, destination: "Tokyo", rating: 5, comment: "Best city ever, so much to see and do!" },
-    { userId: 6, destination: "Rome", rating: 4, comment: "Full of history, but very crowded." },
-    { userId: 7, destination: "Cape Town", rating: 5, comment: "Amazing views and wildlife!" },
-    { userId: 8, destination: "Sydney", rating: 4, comment: "Beautiful beaches and great weather." },
-    { userId: 9, destination: "New York", rating: 5, comment: "So much energy, loved it!" },
-    { userId: 10, destination: "Machu Picchu", rating: 5, comment: "Incredible experience, highly recommended." }
+  export const myreviews: Review[] = [
+    { userId: 1, destination: "Santorini", rating: 5, comment: "Absolutely stunning!", destinationid:"67db04cbbd0a094ada585bc0"},
+    { userId: 2, destination: "Bali", rating: 4, comment: "Great beaches and friendly locals.",destinationid:"67db04cbbd0a094ada585bc1" },
+    { userId: 3, destination: "Paris", rating: 5, comment: "A dream come true, loved every moment.",destinationid:"67db04cbbd0a094ada585bc2" },
+    { userId: 4, destination: "Dubai", rating: 4, comment: "Luxurious and fun, but a bit expensive.",destinationid:"67db04cbbd0a094ada585bc3" },
+    { userId: 5, destination: "Tokyo", rating: 5, comment: "Best city ever, so much to see and do!" ,destinationid:"67db04cbbd0a094ada585bc4"},
+    { userId: 6, destination: "Rome", rating: 4, comment: "Full of history, but very crowded.", destinationid:"67db04cbbd0a094ada585bc5"},
+    { userId: 7, destination: "Cape Town", rating: 5, comment: "Amazing views and wildlife!",destinationid:"67db04cbbd0a094ada585bc6" },
+    { userId: 8, destination: "Sydney", rating: 4, comment: "Beautiful beaches and great weather.", destinationid:"67db04cbbd0a094ada585bc7"},
+    { userId: 9, destination: "New York", rating: 5, comment: "So much energy, loved it!", destinationid:"67db04cbbd0a094ada585bc8"},
+    { userId: 10, destination: "Machu Picchu", rating: 5, comment: "Incredible experience, highly recommended.", destinationid:"67db04cbbd0a094ada585bc9"}
   ];
   

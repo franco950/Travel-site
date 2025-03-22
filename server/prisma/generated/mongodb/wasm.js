@@ -129,7 +129,8 @@ exports.Prisma.ReviewScalarFieldEnum = {
   userId: 'userId',
   destination: 'destination',
   rating: 'rating',
-  comment: 'comment'
+  comment: 'comment',
+  destinationid: 'destinationid'
 };
 
 exports.Prisma.SortOrder = {

@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-/*import {hotels,flights,transports,users} from "./datasets";*/
+import {myreviews} from "./datasets";
 import { PrismaClient as MySQLPrismaClient } from "../prisma/generated/mysql";
 import { PrismaClient as MongoDBPrismaClient } from "../prisma/generated/mongodb";
 
@@ -38,6 +38,16 @@ async function main() {
     
     
   }}*/
+//  async function main(){
+//   try {
+//     const newreviews = await mongodbPrisma.review.createMany({ data: myreviews})
+//     console.log(newreviews)
+  
+//   }catch (error) {
+//     console.error("Error in main function:", error);
+//   }
+//  }
+// main()
   /*
   await mysqlPrisma.hotel.deleteMany();
   await mysqlPrisma.flight.deleteMany();
@@ -60,6 +70,22 @@ app.get('/home',async(req,res)=>{
     console.log('destinations sent')
   }catch(error){
     console.error("Error in /home",error);
+    res.status(500).json({message:"Internal server error"});
+  }finally {
+    await mongodbPrisma.$disconnect();
+  }
+});
+
+app.get('/destinations/:id',async(req,res)=>{
+  try{
+    const destinationid=req.params.id
+    const mydestination = await mongodbPrisma.destination.
+    findUnique({ where: { id: destinationid },include: { review: true },  });
+
+    res.json({mydestination});
+    console.log('description and review sent')
+  }catch(error){
+    console.error("Error in /destinations",error);
     res.status(500).json({message:"Internal server error"});
   }finally {
     await mongodbPrisma.$disconnect();
