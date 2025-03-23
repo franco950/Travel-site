@@ -32,7 +32,18 @@ export type Hotel = {
   beds: number;
   city: string; 
 };
-
+export type BookingCart = {
+  flight: Flight;
+  hotel: Hotel;
+  transport:Transport
+  destinationid:string
+};
+export function clearstorage(id:string){
+  const cartData = localStorage.getItem("cart") || "{}"; 
+  let cart: BookingCart = JSON.parse(cartData);
+  if (cart.destinationid!=id){localStorage.removeItem("cart");}
+  
+}
 export function getBooking(city:string) {
   const [flights, setFlights] = useState<Flight[]>([]);
   const [hotels, setHotels] = useState<Hotel[]>([]);
