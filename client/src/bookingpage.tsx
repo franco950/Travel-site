@@ -1,18 +1,18 @@
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import { getBooking,Flight,Transport,Hotel,BookingCart } from "./data/booking";
+import { getBooking,Flight,Transport,Hotel,BookingCart,clearstorage } from "./data/booking";
 import { useState } from "react";
 
 
 function BookingPage(){
     const { city,id } = useParams(); 
     if (!id ||!city) {console.log("id error in booking page");return} 
+    clearstorage(id)//if user changed destinations the saved booking data will clear
     const {flights, hotels, transportation, loading, error }=getBooking(city)
     let [savedflight, setFlight] = useState<Flight>()
     let [savedhotel, setHotel ] = useState<Hotel>()
     let [savedtransport, setTransport ] = useState<Transport>()
-
-
+    
     function chooseflight(id:Flight['id']){
         const selected:Flight|undefined=flights.find((flight:Flight)=>{if (flight.id==id){return true}})
             if(selected){setFlight(selected)}
@@ -28,8 +28,6 @@ function BookingPage(){
             if (selected){setTransport(selected)}
             else{console.log('error in transport selection')}}
 
-
-    
     if (loading){console.log("bookingdata loading")}
     if (error){console.log(error)}
 
@@ -70,8 +68,7 @@ function BookingPage(){
             setFlight(cart.flight)
             setHotel(cart.hotel)
             setTransport(cart.transport)
-        }
-        
+        } 
         return topbar}
     
     const menu=getTopbar(savedflight,savedhotel,savedtransport)
