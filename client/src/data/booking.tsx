@@ -1,37 +1,37 @@
 import { useEffect, useState } from "react";
 
-type Flight = {
-    id?: number;
-    airline: string;
-    price: number;
-    class: string;
-    origin: string;
-    destination: string;
-    departuredate: Date; 
-    departuretime: number;
-    arrivaltime: number;
-    slots: number;
-  };
+export type Flight = {
+  id: number;
+  airline: string;
+  price: number;
+  class: string;
+  origin: string;
+  destination: string;
+  departuredate: Date; 
+  departuretime: number;
+  arrivaltime: number;
+  slots: number;
+};
   
-  type Transport = {
-    id?: number;
-    mode: string;
-    company: string;
-    price: number; 
-    origin: string;
-    destination: string;
-    slots: number;
-  };
+export type Transport = {
+  id: number;
+  mode: string;
+  company: string;
+  price: number; 
+  origin: string;
+  destination: string;
+  slots: number;
+};
   
-  type Hotel = {
-    id?: number;
-    name: string;
-    class: string;
-    price: number;
-    slots: number;
-    beds: number;
-    city: string; 
-  };
+export type Hotel = {
+  id: number;
+  name: string;
+  class: string;
+  price: number;
+  slots: number;
+  beds: number;
+  city: string; 
+};
 
 export function getBooking(city:string) {
   const [flights, setFlights] = useState<Flight[]>([]);
