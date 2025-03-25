@@ -7,7 +7,7 @@ import { useState } from "react";
 function BookingPage(){
     const { city,id } = useParams(); 
     if (!id ||!city) {console.log("id error in booking page");return} 
-    clearstorage(id)//if user changed destinations the saved booking data will clear
+    clearstorage(id)//if user changed destinations the locally saved booking data will clear
     const {flights, hotels, transportation, loading, error }=getBooking(city)
     let [savedflight, setFlight] = useState<Flight>()
     let [savedhotel, setHotel ] = useState<Hotel>()
