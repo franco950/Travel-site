@@ -44,21 +44,35 @@ export function clearstorage(id:string){
   if (cart.destinationid!=id){localStorage.removeItem("cart");}
   
 }
-export function getBooking(city:string) {
+export function getBooking(city:string,navigate: (path: string) => void) {
   const [flights, setFlights] = useState<Flight[]>([]);
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [transportation, setTransport] = useState<Transport[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-
+ 
+  
   useEffect(() => {
-    fetch(`http://localhost:5000/booking/${city}`)
-      .then((response) => response.json())
+    fetch(`http://localhost:5000/booking/${city}`,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      
+      credentials: "include",})
+      .then((response) =>{
+        if (response.status === 401) {
+        // Not authenticated, redirect to login
+          
+          navigate("/login");
+          alert('you need to log in first')
+          return null}
+        return response.json();})
       .then((homeData) => {
         setFlights(homeData.flights || []);
         setHotels(homeData.hotels || []);
         setTransport(homeData.transportation|| []);
+        
         console.log('useDestinations works')
       })
       .catch((error) => {

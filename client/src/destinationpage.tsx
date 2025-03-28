@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {useDestinations,Destination,searchDestinations} from "./data/destinations";
 import { Link } from 'react-router-dom';
+import Navbar from "./components/Navbar";
 
 interface DestinationCardProps {
   destination: Destination;
@@ -10,7 +11,6 @@ function DestinationPage(){
   const { destinations, loading, error } = useDestinations();
   if (loading) console.log('Loading destinations...')
   if (error) console.log({error})
-
   const options=["name","country","city","continent","price","duration"]
   const [filteredDestinations, setFilteredDestinations] = useState<Destination[]>([]);
   const [answer,setAnswer]=useState("")
@@ -32,6 +32,7 @@ function DestinationPage(){
  
   return (
     <>
+    <><Navbar /></>
     <div className="choosebar">search by {query}<button onClick={choose}></button></div>
     <div><input
         type="text"

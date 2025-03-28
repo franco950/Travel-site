@@ -1,6 +1,6 @@
 // Define Types
-type User = {
-    id?: number;
+export type User = {
+    id: number;
     firstname: string;
     lastname: string;
     email: string;
@@ -64,7 +64,7 @@ type User = {
     destinationid: string;
   };
  
-  export const users: User[] = [
+  /*export const users: User[] = [
       { firstname: "John", lastname: "Doe", email: "john.doe@example.com", password: "password123", phone: "1234567890" },
       { firstname: "Jane", lastname: "Smith", email: "jane.smith@example.com", password: "securepass", phone: "2345678901" },
       { firstname: "Alice", lastname: "Johnson", email: "alice.johnson@example.com", password: "passAlice", phone: "3456789012" },
@@ -80,7 +80,7 @@ type User = {
       { firstname: "Kelly", lastname: "White", email: "kelly.white@example.com", password: "kellypass", phone: "9456789012" },
       { firstname: "Leo", lastname: "Martin", email: "leo.martin@example.com", password: "leopass", phone: "9567890123" },
       { firstname: "Mia", lastname: "Clark", email: "mia.clark@example.com", password: "miapass", phone: "9678901234" }
-  ];
+  ];*/
   export const flights: Flight[] = [
     { airline: "Airways A", price: 299.99, class: "Economy", origin: "New York", destination: "Paris", departuredate: new Date("2024-04-20T14:00:00Z"), departuretime: 1400, arrivaltime: 2200, slots: 50 },
     { airline: "SkyJet", price: 310.50, class: "Business", origin: "Los Angeles", destination: "Paris", departuredate: new Date("2024-04-22T16:00:00Z"), departuretime: 1600, arrivaltime: 400, slots: 35 },

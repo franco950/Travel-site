@@ -1,14 +1,16 @@
 import { useParams } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 import { getBooking,Flight,Transport,Hotel,BookingCart,clearstorage } from "./data/booking";
 import { useState } from "react";
-
+import Navbar from "./components/Navbar"
 
 function BookingPage(){
+    const navigate=useNavigate()
     const { city,id } = useParams(); 
     if (!id ||!city) {console.log("id error in booking page");return} 
     clearstorage(id)//if user changed destinations the locally saved booking data will clear
-    const {flights, hotels, transportation, loading, error }=getBooking(city)
+    const {flights, hotels, transportation, loading, error }=getBooking(city,navigate)
+    console.log(flights)
     let [savedflight, setFlight] = useState<Flight>()
     let [savedhotel, setHotel ] = useState<Hotel>()
     let [savedtransport, setTransport ] = useState<Transport>()
@@ -75,6 +77,7 @@ function BookingPage(){
     
     return(
     <>
+    <><Navbar /></>
     {menu}
     <Link to={`/destinations/${id}`} ><button>go back</button></Link>
     <h1>{city}</h1>

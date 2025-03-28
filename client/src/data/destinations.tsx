@@ -43,7 +43,7 @@ export function getSingleDestination(id:string){
       .finally(() => setLoading(false));
   }, []);
 
-  return { destination, loading, error };
+  return { destination, loading, error};
       
 }
 export function useDestinations() {
@@ -52,7 +52,13 @@ export function useDestinations() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/home")
+    fetch("http://localhost:5000/home",{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      
+      credentials: "include",})
       .then((response) => response.json())
       .then((homeData) => {
         setDestinations(homeData.destinations || []);
@@ -67,11 +73,7 @@ export function useDestinations() {
 
   return { destinations,  loading, error };
 }
-/*
-enum SortBy {
-  destinations= "",
-  Duration = "duration",
-}*/
+
 export function searchDestinations(
   
   destinations: Destination[],
