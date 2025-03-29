@@ -64,7 +64,7 @@ function BookingPage(){
                 selected hotel:{savedhotel.name} price {savedhotel.price}, 
                 selected transport:{savedtransport.mode} price{savedtransport.price} 
                 total:{savedflight.price+savedhotel.price+savedtransport.price} 
-                <button>confirm booking</button></div>
+                <Link to={`/order/${id}/${city}`}><button >confirm booking</button></Link></div>
         }
         else if (cart.flight&&cart.hotel&&cart.transport){
             setFlight(cart.flight)

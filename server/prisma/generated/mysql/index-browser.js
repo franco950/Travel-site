@@ -201,6 +201,10 @@ exports.Prisma.HotelOrderByRelevanceFieldEnum = {
   class: 'class'
 };
 
+exports.Prisma.OrderOrderByRelevanceFieldEnum = {
+  destinationid: 'destinationid'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',

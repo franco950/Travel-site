@@ -4,8 +4,8 @@ import { Link,useNavigate } from 'react-router-dom';
  import { Navigate } from 'react-router-dom';
 
 type Loginform={
-    email:String
-    password:String}
+    email:string
+    password:string}
 
 async function login(formData:Loginform,
     setMessage: React.Dispatch<React.SetStateAction<string>>,

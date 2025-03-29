@@ -60,7 +60,7 @@ model Hotel {
 model Order {
   id    Int    @id @default(autoincrement())
   userid   Int
-  destinationid Int
+  destinationid String
   flightid Int
   hotelid Int
   transportid Int

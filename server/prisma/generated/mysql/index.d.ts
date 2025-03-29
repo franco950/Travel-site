@@ -5015,7 +5015,6 @@ export namespace Prisma {
   export type OrderAvgAggregateOutputType = {
     id: number | null
     userid: number | null
-    destinationid: number | null
     flightid: number | null
     hotelid: number | null
     transportid: number | null
@@ -5024,7 +5023,6 @@ export namespace Prisma {
   export type OrderSumAggregateOutputType = {
     id: number | null
     userid: number | null
-    destinationid: number | null
     flightid: number | null
     hotelid: number | null
     transportid: number | null
@@ -5033,7 +5031,7 @@ export namespace Prisma {
   export type OrderMinAggregateOutputType = {
     id: number | null
     userid: number | null
-    destinationid: number | null
+    destinationid: string | null
     flightid: number | null
     hotelid: number | null
     transportid: number | null
@@ -5042,7 +5040,7 @@ export namespace Prisma {
   export type OrderMaxAggregateOutputType = {
     id: number | null
     userid: number | null
-    destinationid: number | null
+    destinationid: string | null
     flightid: number | null
     hotelid: number | null
     transportid: number | null
@@ -5062,7 +5060,6 @@ export namespace Prisma {
   export type OrderAvgAggregateInputType = {
     id?: true
     userid?: true
-    destinationid?: true
     flightid?: true
     hotelid?: true
     transportid?: true
@@ -5071,7 +5068,6 @@ export namespace Prisma {
   export type OrderSumAggregateInputType = {
     id?: true
     userid?: true
-    destinationid?: true
     flightid?: true
     hotelid?: true
     transportid?: true
@@ -5194,7 +5190,7 @@ export namespace Prisma {
   export type OrderGroupByOutputType = {
     id: number
     userid: number
-    destinationid: number
+    destinationid: string
     flightid: number
     hotelid: number
     transportid: number
@@ -5247,7 +5243,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       userid: number
-      destinationid: number
+      destinationid: string
       flightid: number
       hotelid: number
       transportid: number
@@ -5622,7 +5618,7 @@ export namespace Prisma {
   interface OrderFieldRefs {
     readonly id: FieldRef<"Order", 'Int'>
     readonly userid: FieldRef<"Order", 'Int'>
-    readonly destinationid: FieldRef<"Order", 'Int'>
+    readonly destinationid: FieldRef<"Order", 'String'>
     readonly flightid: FieldRef<"Order", 'Int'>
     readonly hotelid: FieldRef<"Order", 'Int'>
     readonly transportid: FieldRef<"Order", 'Int'>
@@ -6075,6 +6071,13 @@ export namespace Prisma {
   export type HotelOrderByRelevanceFieldEnum = (typeof HotelOrderByRelevanceFieldEnum)[keyof typeof HotelOrderByRelevanceFieldEnum]
 
 
+  export const OrderOrderByRelevanceFieldEnum: {
+    destinationid: 'destinationid'
+  };
+
+  export type OrderOrderByRelevanceFieldEnum = (typeof OrderOrderByRelevanceFieldEnum)[keyof typeof OrderOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references 
    */
@@ -6387,7 +6390,7 @@ export namespace Prisma {
     NOT?: OrderWhereInput | OrderWhereInput[]
     id?: IntFilter<"Order"> | number
     userid?: IntFilter<"Order"> | number
-    destinationid?: IntFilter<"Order"> | number
+    destinationid?: StringFilter<"Order"> | string
     flightid?: IntFilter<"Order"> | number
     hotelid?: IntFilter<"Order"> | number
     transportid?: IntFilter<"Order"> | number
@@ -6400,6 +6403,7 @@ export namespace Prisma {
     flightid?: SortOrder
     hotelid?: SortOrder
     transportid?: SortOrder
+    _relevance?: OrderOrderByRelevanceInput
   }
 
   export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -6408,7 +6412,7 @@ export namespace Prisma {
     OR?: OrderWhereInput[]
     NOT?: OrderWhereInput | OrderWhereInput[]
     userid?: IntFilter<"Order"> | number
-    destinationid?: IntFilter<"Order"> | number
+    destinationid?: StringFilter<"Order"> | string
     flightid?: IntFilter<"Order"> | number
     hotelid?: IntFilter<"Order"> | number
     transportid?: IntFilter<"Order"> | number
@@ -6434,7 +6438,7 @@ export namespace Prisma {
     NOT?: OrderScalarWhereWithAggregatesInput | OrderScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Order"> | number
     userid?: IntWithAggregatesFilter<"Order"> | number
-    destinationid?: IntWithAggregatesFilter<"Order"> | number
+    destinationid?: StringWithAggregatesFilter<"Order"> | string
     flightid?: IntWithAggregatesFilter<"Order"> | number
     hotelid?: IntWithAggregatesFilter<"Order"> | number
     transportid?: IntWithAggregatesFilter<"Order"> | number
@@ -6724,7 +6728,7 @@ export namespace Prisma {
 
   export type OrderCreateInput = {
     userid: number
-    destinationid: number
+    destinationid: string
     flightid: number
     hotelid: number
     transportid: number
@@ -6733,7 +6737,7 @@ export namespace Prisma {
   export type OrderUncheckedCreateInput = {
     id?: number
     userid: number
-    destinationid: number
+    destinationid: string
     flightid: number
     hotelid: number
     transportid: number
@@ -6741,7 +6745,7 @@ export namespace Prisma {
 
   export type OrderUpdateInput = {
     userid?: IntFieldUpdateOperationsInput | number
-    destinationid?: IntFieldUpdateOperationsInput | number
+    destinationid?: StringFieldUpdateOperationsInput | string
     flightid?: IntFieldUpdateOperationsInput | number
     hotelid?: IntFieldUpdateOperationsInput | number
     transportid?: IntFieldUpdateOperationsInput | number
@@ -6750,7 +6754,7 @@ export namespace Prisma {
   export type OrderUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     userid?: IntFieldUpdateOperationsInput | number
-    destinationid?: IntFieldUpdateOperationsInput | number
+    destinationid?: StringFieldUpdateOperationsInput | string
     flightid?: IntFieldUpdateOperationsInput | number
     hotelid?: IntFieldUpdateOperationsInput | number
     transportid?: IntFieldUpdateOperationsInput | number
@@ -6759,7 +6763,7 @@ export namespace Prisma {
   export type OrderCreateManyInput = {
     id?: number
     userid: number
-    destinationid: number
+    destinationid: string
     flightid: number
     hotelid: number
     transportid: number
@@ -6767,7 +6771,7 @@ export namespace Prisma {
 
   export type OrderUpdateManyMutationInput = {
     userid?: IntFieldUpdateOperationsInput | number
-    destinationid?: IntFieldUpdateOperationsInput | number
+    destinationid?: StringFieldUpdateOperationsInput | string
     flightid?: IntFieldUpdateOperationsInput | number
     hotelid?: IntFieldUpdateOperationsInput | number
     transportid?: IntFieldUpdateOperationsInput | number
@@ -6776,7 +6780,7 @@ export namespace Prisma {
   export type OrderUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     userid?: IntFieldUpdateOperationsInput | number
-    destinationid?: IntFieldUpdateOperationsInput | number
+    destinationid?: StringFieldUpdateOperationsInput | string
     flightid?: IntFieldUpdateOperationsInput | number
     hotelid?: IntFieldUpdateOperationsInput | number
     transportid?: IntFieldUpdateOperationsInput | number
@@ -7094,6 +7098,12 @@ export namespace Prisma {
     beds?: SortOrder
   }
 
+  export type OrderOrderByRelevanceInput = {
+    fields: OrderOrderByRelevanceFieldEnum | OrderOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type OrderCountOrderByAggregateInput = {
     id?: SortOrder
     userid?: SortOrder
@@ -7106,7 +7116,6 @@ export namespace Prisma {
   export type OrderAvgOrderByAggregateInput = {
     id?: SortOrder
     userid?: SortOrder
-    destinationid?: SortOrder
     flightid?: SortOrder
     hotelid?: SortOrder
     transportid?: SortOrder
@@ -7133,7 +7142,6 @@ export namespace Prisma {
   export type OrderSumOrderByAggregateInput = {
     id?: SortOrder
     userid?: SortOrder
-    destinationid?: SortOrder
     flightid?: SortOrder
     hotelid?: SortOrder
     transportid?: SortOrder

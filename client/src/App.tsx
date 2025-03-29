@@ -6,6 +6,7 @@ import BookingPage from "./bookingpage"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from "./loginpage";
 import RegistrationPage from "./registrationpage";
+import OrderPage from "./orderpage"
 
 function App(){
   return(<>
@@ -17,6 +18,7 @@ function App(){
         <Route path="/booking/:id/:city" element={<ProtectedRoute><BookingPage /></ProtectedRoute>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/order/:id/:city" element={<ProtectedRoute><OrderPage /></ProtectedRoute>} />
       </Routes>
     </Router>
     </AuthProvider>

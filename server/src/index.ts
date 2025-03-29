@@ -193,11 +193,16 @@ app.post('/order',checkAuth,async(req: Request, res: Response)=>{
   try{
     const neworder = req.body; 
     if (!neworder || typeof neworder !== 'object') {
-    res.status(400).json({ error: "Invalid order data" });}
-    
-    await mysqlPrisma.order.create({data:neworder});
-   
-    res.json({message:"Order created"});
+    res.status(400).json({ error: "Invalid order data" });
+    return}
+    if (!req.user){res.status(401).json({ error: "please log in to place booking" });
+    return}
+    const myorder={userid:(req.user as User).id, flightid:neworder.flight.id,
+      transportid:neworder.transport.id, hotelid:neworder.hotel.id, destinationid:neworder.destinationid}
+
+    await mysqlPrisma.order.create({data:myorder});
+    res.status(201).json({message:"Order created"});
+    console.log(myorder)
 
   }catch(error){
     console.error("Error in /order",error);
