@@ -20,6 +20,20 @@ async function main() {
 // main()
     
     /*
+    // async function main() {
+//   try{
+//     const u = await mysqlPrisma.user.findUnique({where:{email:'frankweiss@example.com'}})
+//     if (!u){console.log('no such user');return }
+//     else{
+    
+//       const hashedpassword=await bcrypt.hash(u.password,10)
+//       const newuser=await mysqlPrisma.user.update({where:{email:'frankweiss@example.com'},data:{password:hashedpassword}})
+//       console.log(newuser)}
+//     }catch (error) {
+//           console.error("Error in main function:", error);
+//         }
+//        }
+//       main()
 
     const transport = await mysqlPrisma.transport.createMany({ data: transports})
     console.log(transport)

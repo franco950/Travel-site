@@ -26,7 +26,7 @@ async function login(formData:Loginform,
         credentials: "include",
     
     })
-    console.log(response)
+    
     const data = await response.json();
     if (response.status === 403) {
         //  already authenticated, redirect to home
@@ -70,6 +70,7 @@ function LoginPage(){
     <input type="password" name='password'value={formData.password}onChange={handleChange}></input>
     <button type='submit' onClick={handleLogin}>login</button>
     <Link to={`/register`} ><button>sign up</button></Link>
+    <Link to={`/`} ><button>proceed to homepage without login</button></Link>
     </>)
 }
 

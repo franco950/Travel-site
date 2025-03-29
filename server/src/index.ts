@@ -4,6 +4,10 @@ import dotenv from "dotenv";
 import {User,myreviews} from "./datasets";
 import { PrismaClient as MySQLPrismaClient } from "../prisma/generated/mysql";
 import { PrismaClient as MongoDBPrismaClient } from "../prisma/generated/mongodb";
+import { PrismaClientKnownRequestError } from "../prisma/generated/mysql/runtime/library";
+
+
+
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -35,7 +39,6 @@ app.use(session({
 initialize(passport)
 app.use(passport.initialize())
 app.use(passport.session())
-
 
 async function findUserByEmail(email:string){
   return await mysqlPrisma.user.findUnique({where:{email:email} })}
@@ -94,8 +97,31 @@ app.post("/login",notAuth, (req: Request, res: Response,next) => {
 }
 );
 
-app.post("/register",notAuth, (req: Request, res: Response) => {
-  res.send("Hello,this is register page");
+app.post("/register",notAuth, async(req: Request, res: Response) => {
+  try{
+  const formdata=req.body
+  const existingUser = await mysqlPrisma.user.findUnique({
+    where: { email: formdata.email },
+  });
+
+  if (existingUser) {
+     res.status(400).json({ error: "Email already exists. Please log in or use another email." });
+     return
+  }
+  const hashedpassword=await bcrypt.hash(formdata.password,10)
+  formdata.password=hashedpassword
+  const userdata=await mysqlPrisma.user.create({data:formdata})
+  res.status(201).json({message:`success,account created for:${userdata.firstname}`});
+   return}
+  catch(error){
+    if (error instanceof PrismaClientKnownRequestError && error.code === "P2002") {
+      res.status(400).json({ error: "Email already exists. Please use a different one." });
+    return}
+    console.error("server error in registration:",error);
+     res.status(500).json({message:"Internal server error"});
+  }finally {
+    await mysqlPrisma.$disconnect();
+  }
 });
 app.delete("/logout", (req: Request, res: Response, next) => {
   req.logout((err) => {
