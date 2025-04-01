@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import {User,myreviews} from "./datasets";
+import {User} from "./datasets";
 import { PrismaClient as MySQLPrismaClient } from "../prisma/generated/mysql";
 import { PrismaClient as MongoDBPrismaClient } from "../prisma/generated/mongodb";
 import { PrismaClientKnownRequestError } from "../prisma/generated/mysql/runtime/library";
@@ -101,7 +101,7 @@ app.post("/register",notAuth, async(req: Request, res: Response) => {
   try{
   const formdata=req.body
   const existingUser = await mysqlPrisma.user.findUnique({
-    where: { email: formdata.email },
+    where:{ email: formdata.email },
   });
 
   if (existingUser) {
@@ -124,13 +124,13 @@ app.post("/register",notAuth, async(req: Request, res: Response) => {
   }
 });
 app.delete("/logout", (req: Request, res: Response, next) => {
-  req.logout((err) => {
-    if (err) return next(err);
-    req.session.destroy(() => {
-      res.status(200).json({ message: "Logged out successfully" });
-    });
+  
+    
+    req.session.destroy((err) => {
+      if (err) {return `server error, ${err}`}
+      res.status(200).json({ message: "Logged out successfully" });});
   });
-});
+
 app.get("/auth-status", (req, res) => {
   res.json({
     isLoggedin: req.isAuthenticated(),
@@ -211,6 +211,54 @@ app.post('/order',checkAuth,async(req: Request, res: Response)=>{
     await mysqlPrisma.$disconnect();}*/
   
 });
+app.get('/profile',checkAuth,async(req:Request,res:Response)=>{
+  try{
+    const myuser=await mysqlPrisma.user.findUnique({where:{id:(req.user as User).id},
+    select:{firstname:true,lastname:true,email:true,phone:true}})
+    console.log(req.user)
+    res.status(200).json({myuser})
+  }catch(error){
+    res.json({message:`server error, ${error}`})
+  }})
+
+app.delete('/profile',checkAuth,async(req:Request,res:Response)=>{
+  try{
+    const myuser=req.user as User
+    req.session.destroy((err) => {
+    if (err) {
+      res.status(500).json({message:`server error, ${err.message}`})}})
+
+    const olduser=await mysqlPrisma.user.findUnique({where:{id:myuser.id},
+    select:{firstname:true,lastname:true,email:true,phone:true}})
+
+    if (!olduser) {
+      res.status(404).json({ message: "User not found" });}
+    else {
+    const moveuser=await mysqlPrisma.deletedUser.create({data:olduser})
+    if(!moveuser){
+      res.status(500).json(`error archiving user`)}
+    else{
+      await mysqlPrisma.user.delete({where:{id:myuser.id}})
+      res.status(200).json({ message: "user deleted successfully" })
+    }}
+    
+  }catch(error:any){
+    console.error("Unexpected server error:", error);
+    res.json({message:`unexpected server error, ${error.message}`})
+  }
+})
+app.patch('/profile',checkAuth,async(req:Request,res:Response)=>{
+  try{
+    const myuser=req.user as User
+    const newdata=req.body
+    const updateprofile=await mysqlPrisma.user.updateMany(
+      {where:{id:myuser.id},data:newdata})
+      
+    if (!updateprofile){
+      res.status(500).json('update failed,')}
+  }
+  catch(error){res.json(`server error,${error}`)}
+})
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

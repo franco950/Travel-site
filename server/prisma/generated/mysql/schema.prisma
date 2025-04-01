@@ -16,11 +16,20 @@ datasource db {
 
 // MySQL Models
 model User {
+  id            Int     @id @default(autoincrement())
+  firstname     String
+  lastname      String
+  email         String  @unique
+  password      String
+  phone         String  @db.VarChar(20)
+  isdeactivated Boolean @default(false)
+}
+
+model DeletedUser {
   id        Int    @id @default(autoincrement())
   firstname String
   lastname  String
-  email     String @unique
-  password  String
+  email     String
   phone     String @db.VarChar(20)
 }
 

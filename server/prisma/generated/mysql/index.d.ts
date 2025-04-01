@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model DeletedUser
+ * 
+ */
+export type DeletedUser = $Result.DefaultSelection<Prisma.$DeletedUserPayload>
+/**
  * Model Flight
  * 
  */
@@ -173,6 +178,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.deletedUser`: Exposes CRUD operations for the **DeletedUser** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DeletedUsers
+    * const deletedUsers = await prisma.deletedUser.findMany()
+    * ```
+    */
+  get deletedUser(): Prisma.DeletedUserDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.flight`: Exposes CRUD operations for the **Flight** model.
@@ -654,6 +669,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    DeletedUser: 'DeletedUser',
     Flight: 'Flight',
     Transport: 'Transport',
     Hotel: 'Hotel',
@@ -673,7 +689,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "flight" | "transport" | "hotel" | "order"
+      modelProps: "user" | "deletedUser" | "flight" | "transport" | "hotel" | "order"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -740,6 +756,72 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      DeletedUser: {
+        payload: Prisma.$DeletedUserPayload<ExtArgs>
+        fields: Prisma.DeletedUserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DeletedUserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DeletedUserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DeletedUserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DeletedUserPayload>
+          }
+          findFirst: {
+            args: Prisma.DeletedUserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DeletedUserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DeletedUserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DeletedUserPayload>
+          }
+          findMany: {
+            args: Prisma.DeletedUserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DeletedUserPayload>[]
+          }
+          create: {
+            args: Prisma.DeletedUserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DeletedUserPayload>
+          }
+          createMany: {
+            args: Prisma.DeletedUserCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.DeletedUserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DeletedUserPayload>
+          }
+          update: {
+            args: Prisma.DeletedUserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DeletedUserPayload>
+          }
+          deleteMany: {
+            args: Prisma.DeletedUserDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DeletedUserUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.DeletedUserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DeletedUserPayload>
+          }
+          aggregate: {
+            args: Prisma.DeletedUserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDeletedUser>
+          }
+          groupBy: {
+            args: Prisma.DeletedUserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DeletedUserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DeletedUserCountArgs<ExtArgs>
+            result: $Utils.Optional<DeletedUserCountAggregateOutputType> | number
           }
         }
       }
@@ -1092,6 +1174,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    deletedUser?: DeletedUserOmit
     flight?: FlightOmit
     transport?: TransportOmit
     hotel?: HotelOmit
@@ -1217,6 +1300,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     phone: string | null
+    isdeactivated: boolean | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1226,6 +1310,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     phone: string | null
+    isdeactivated: boolean | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1235,6 +1320,7 @@ export namespace Prisma {
     email: number
     password: number
     phone: number
+    isdeactivated: number
     _all: number
   }
 
@@ -1254,6 +1340,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
+    isdeactivated?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1263,6 +1350,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
+    isdeactivated?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1272,6 +1360,7 @@ export namespace Prisma {
     email?: true
     password?: true
     phone?: true
+    isdeactivated?: true
     _all?: true
   }
 
@@ -1368,6 +1457,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    isdeactivated: boolean
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1396,6 +1486,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
+    isdeactivated?: boolean
   }, ExtArgs["result"]["user"]>
 
 
@@ -1407,9 +1498,10 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     phone?: boolean
+    isdeactivated?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstname" | "lastname" | "email" | "password" | "phone", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstname" | "lastname" | "email" | "password" | "phone" | "isdeactivated", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1421,6 +1513,7 @@ export namespace Prisma {
       email: string
       password: string
       phone: string
+      isdeactivated: boolean
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1796,6 +1889,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly phone: FieldRef<"User", 'String'>
+    readonly isdeactivated: FieldRef<"User", 'Boolean'>
   }
     
 
@@ -2114,6 +2208,922 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DeletedUser
+   */
+
+  export type AggregateDeletedUser = {
+    _count: DeletedUserCountAggregateOutputType | null
+    _avg: DeletedUserAvgAggregateOutputType | null
+    _sum: DeletedUserSumAggregateOutputType | null
+    _min: DeletedUserMinAggregateOutputType | null
+    _max: DeletedUserMaxAggregateOutputType | null
+  }
+
+  export type DeletedUserAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type DeletedUserSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type DeletedUserMinAggregateOutputType = {
+    id: number | null
+    firstname: string | null
+    lastname: string | null
+    email: string | null
+    phone: string | null
+  }
+
+  export type DeletedUserMaxAggregateOutputType = {
+    id: number | null
+    firstname: string | null
+    lastname: string | null
+    email: string | null
+    phone: string | null
+  }
+
+  export type DeletedUserCountAggregateOutputType = {
+    id: number
+    firstname: number
+    lastname: number
+    email: number
+    phone: number
+    _all: number
+  }
+
+
+  export type DeletedUserAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type DeletedUserSumAggregateInputType = {
+    id?: true
+  }
+
+  export type DeletedUserMinAggregateInputType = {
+    id?: true
+    firstname?: true
+    lastname?: true
+    email?: true
+    phone?: true
+  }
+
+  export type DeletedUserMaxAggregateInputType = {
+    id?: true
+    firstname?: true
+    lastname?: true
+    email?: true
+    phone?: true
+  }
+
+  export type DeletedUserCountAggregateInputType = {
+    id?: true
+    firstname?: true
+    lastname?: true
+    email?: true
+    phone?: true
+    _all?: true
+  }
+
+  export type DeletedUserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DeletedUser to aggregate.
+     */
+    where?: DeletedUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DeletedUsers to fetch.
+     */
+    orderBy?: DeletedUserOrderByWithRelationInput | DeletedUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DeletedUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DeletedUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DeletedUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DeletedUsers
+    **/
+    _count?: true | DeletedUserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DeletedUserAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DeletedUserSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DeletedUserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DeletedUserMaxAggregateInputType
+  }
+
+  export type GetDeletedUserAggregateType<T extends DeletedUserAggregateArgs> = {
+        [P in keyof T & keyof AggregateDeletedUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDeletedUser[P]>
+      : GetScalarType<T[P], AggregateDeletedUser[P]>
+  }
+
+
+
+
+  export type DeletedUserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DeletedUserWhereInput
+    orderBy?: DeletedUserOrderByWithAggregationInput | DeletedUserOrderByWithAggregationInput[]
+    by: DeletedUserScalarFieldEnum[] | DeletedUserScalarFieldEnum
+    having?: DeletedUserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DeletedUserCountAggregateInputType | true
+    _avg?: DeletedUserAvgAggregateInputType
+    _sum?: DeletedUserSumAggregateInputType
+    _min?: DeletedUserMinAggregateInputType
+    _max?: DeletedUserMaxAggregateInputType
+  }
+
+  export type DeletedUserGroupByOutputType = {
+    id: number
+    firstname: string
+    lastname: string
+    email: string
+    phone: string
+    _count: DeletedUserCountAggregateOutputType | null
+    _avg: DeletedUserAvgAggregateOutputType | null
+    _sum: DeletedUserSumAggregateOutputType | null
+    _min: DeletedUserMinAggregateOutputType | null
+    _max: DeletedUserMaxAggregateOutputType | null
+  }
+
+  type GetDeletedUserGroupByPayload<T extends DeletedUserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DeletedUserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DeletedUserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DeletedUserGroupByOutputType[P]>
+            : GetScalarType<T[P], DeletedUserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DeletedUserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    firstname?: boolean
+    lastname?: boolean
+    email?: boolean
+    phone?: boolean
+  }, ExtArgs["result"]["deletedUser"]>
+
+
+
+  export type DeletedUserSelectScalar = {
+    id?: boolean
+    firstname?: boolean
+    lastname?: boolean
+    email?: boolean
+    phone?: boolean
+  }
+
+  export type DeletedUserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstname" | "lastname" | "email" | "phone", ExtArgs["result"]["deletedUser"]>
+
+  export type $DeletedUserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DeletedUser"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      firstname: string
+      lastname: string
+      email: string
+      phone: string
+    }, ExtArgs["result"]["deletedUser"]>
+    composites: {}
+  }
+
+  type DeletedUserGetPayload<S extends boolean | null | undefined | DeletedUserDefaultArgs> = $Result.GetResult<Prisma.$DeletedUserPayload, S>
+
+  type DeletedUserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DeletedUserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DeletedUserCountAggregateInputType | true
+    }
+
+  export interface DeletedUserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DeletedUser'], meta: { name: 'DeletedUser' } }
+    /**
+     * Find zero or one DeletedUser that matches the filter.
+     * @param {DeletedUserFindUniqueArgs} args - Arguments to find a DeletedUser
+     * @example
+     * // Get one DeletedUser
+     * const deletedUser = await prisma.deletedUser.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DeletedUserFindUniqueArgs>(args: SelectSubset<T, DeletedUserFindUniqueArgs<ExtArgs>>): Prisma__DeletedUserClient<$Result.GetResult<Prisma.$DeletedUserPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one DeletedUser that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DeletedUserFindUniqueOrThrowArgs} args - Arguments to find a DeletedUser
+     * @example
+     * // Get one DeletedUser
+     * const deletedUser = await prisma.deletedUser.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DeletedUserFindUniqueOrThrowArgs>(args: SelectSubset<T, DeletedUserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DeletedUserClient<$Result.GetResult<Prisma.$DeletedUserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first DeletedUser that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DeletedUserFindFirstArgs} args - Arguments to find a DeletedUser
+     * @example
+     * // Get one DeletedUser
+     * const deletedUser = await prisma.deletedUser.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DeletedUserFindFirstArgs>(args?: SelectSubset<T, DeletedUserFindFirstArgs<ExtArgs>>): Prisma__DeletedUserClient<$Result.GetResult<Prisma.$DeletedUserPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first DeletedUser that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DeletedUserFindFirstOrThrowArgs} args - Arguments to find a DeletedUser
+     * @example
+     * // Get one DeletedUser
+     * const deletedUser = await prisma.deletedUser.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DeletedUserFindFirstOrThrowArgs>(args?: SelectSubset<T, DeletedUserFindFirstOrThrowArgs<ExtArgs>>): Prisma__DeletedUserClient<$Result.GetResult<Prisma.$DeletedUserPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more DeletedUsers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DeletedUserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DeletedUsers
+     * const deletedUsers = await prisma.deletedUser.findMany()
+     * 
+     * // Get first 10 DeletedUsers
+     * const deletedUsers = await prisma.deletedUser.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const deletedUserWithIdOnly = await prisma.deletedUser.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DeletedUserFindManyArgs>(args?: SelectSubset<T, DeletedUserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DeletedUserPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a DeletedUser.
+     * @param {DeletedUserCreateArgs} args - Arguments to create a DeletedUser.
+     * @example
+     * // Create one DeletedUser
+     * const DeletedUser = await prisma.deletedUser.create({
+     *   data: {
+     *     // ... data to create a DeletedUser
+     *   }
+     * })
+     * 
+     */
+    create<T extends DeletedUserCreateArgs>(args: SelectSubset<T, DeletedUserCreateArgs<ExtArgs>>): Prisma__DeletedUserClient<$Result.GetResult<Prisma.$DeletedUserPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many DeletedUsers.
+     * @param {DeletedUserCreateManyArgs} args - Arguments to create many DeletedUsers.
+     * @example
+     * // Create many DeletedUsers
+     * const deletedUser = await prisma.deletedUser.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DeletedUserCreateManyArgs>(args?: SelectSubset<T, DeletedUserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a DeletedUser.
+     * @param {DeletedUserDeleteArgs} args - Arguments to delete one DeletedUser.
+     * @example
+     * // Delete one DeletedUser
+     * const DeletedUser = await prisma.deletedUser.delete({
+     *   where: {
+     *     // ... filter to delete one DeletedUser
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DeletedUserDeleteArgs>(args: SelectSubset<T, DeletedUserDeleteArgs<ExtArgs>>): Prisma__DeletedUserClient<$Result.GetResult<Prisma.$DeletedUserPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one DeletedUser.
+     * @param {DeletedUserUpdateArgs} args - Arguments to update one DeletedUser.
+     * @example
+     * // Update one DeletedUser
+     * const deletedUser = await prisma.deletedUser.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DeletedUserUpdateArgs>(args: SelectSubset<T, DeletedUserUpdateArgs<ExtArgs>>): Prisma__DeletedUserClient<$Result.GetResult<Prisma.$DeletedUserPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more DeletedUsers.
+     * @param {DeletedUserDeleteManyArgs} args - Arguments to filter DeletedUsers to delete.
+     * @example
+     * // Delete a few DeletedUsers
+     * const { count } = await prisma.deletedUser.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DeletedUserDeleteManyArgs>(args?: SelectSubset<T, DeletedUserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DeletedUsers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DeletedUserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DeletedUsers
+     * const deletedUser = await prisma.deletedUser.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DeletedUserUpdateManyArgs>(args: SelectSubset<T, DeletedUserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one DeletedUser.
+     * @param {DeletedUserUpsertArgs} args - Arguments to update or create a DeletedUser.
+     * @example
+     * // Update or create a DeletedUser
+     * const deletedUser = await prisma.deletedUser.upsert({
+     *   create: {
+     *     // ... data to create a DeletedUser
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DeletedUser we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DeletedUserUpsertArgs>(args: SelectSubset<T, DeletedUserUpsertArgs<ExtArgs>>): Prisma__DeletedUserClient<$Result.GetResult<Prisma.$DeletedUserPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of DeletedUsers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DeletedUserCountArgs} args - Arguments to filter DeletedUsers to count.
+     * @example
+     * // Count the number of DeletedUsers
+     * const count = await prisma.deletedUser.count({
+     *   where: {
+     *     // ... the filter for the DeletedUsers we want to count
+     *   }
+     * })
+    **/
+    count<T extends DeletedUserCountArgs>(
+      args?: Subset<T, DeletedUserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DeletedUserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DeletedUser.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DeletedUserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DeletedUserAggregateArgs>(args: Subset<T, DeletedUserAggregateArgs>): Prisma.PrismaPromise<GetDeletedUserAggregateType<T>>
+
+    /**
+     * Group by DeletedUser.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DeletedUserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DeletedUserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DeletedUserGroupByArgs['orderBy'] }
+        : { orderBy?: DeletedUserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DeletedUserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDeletedUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DeletedUser model
+   */
+  readonly fields: DeletedUserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DeletedUser.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DeletedUserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DeletedUser model
+   */ 
+  interface DeletedUserFieldRefs {
+    readonly id: FieldRef<"DeletedUser", 'Int'>
+    readonly firstname: FieldRef<"DeletedUser", 'String'>
+    readonly lastname: FieldRef<"DeletedUser", 'String'>
+    readonly email: FieldRef<"DeletedUser", 'String'>
+    readonly phone: FieldRef<"DeletedUser", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DeletedUser findUnique
+   */
+  export type DeletedUserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DeletedUser
+     */
+    select?: DeletedUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DeletedUser
+     */
+    omit?: DeletedUserOmit<ExtArgs> | null
+    /**
+     * Filter, which DeletedUser to fetch.
+     */
+    where: DeletedUserWhereUniqueInput
+  }
+
+  /**
+   * DeletedUser findUniqueOrThrow
+   */
+  export type DeletedUserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DeletedUser
+     */
+    select?: DeletedUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DeletedUser
+     */
+    omit?: DeletedUserOmit<ExtArgs> | null
+    /**
+     * Filter, which DeletedUser to fetch.
+     */
+    where: DeletedUserWhereUniqueInput
+  }
+
+  /**
+   * DeletedUser findFirst
+   */
+  export type DeletedUserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DeletedUser
+     */
+    select?: DeletedUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DeletedUser
+     */
+    omit?: DeletedUserOmit<ExtArgs> | null
+    /**
+     * Filter, which DeletedUser to fetch.
+     */
+    where?: DeletedUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DeletedUsers to fetch.
+     */
+    orderBy?: DeletedUserOrderByWithRelationInput | DeletedUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DeletedUsers.
+     */
+    cursor?: DeletedUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DeletedUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DeletedUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DeletedUsers.
+     */
+    distinct?: DeletedUserScalarFieldEnum | DeletedUserScalarFieldEnum[]
+  }
+
+  /**
+   * DeletedUser findFirstOrThrow
+   */
+  export type DeletedUserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DeletedUser
+     */
+    select?: DeletedUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DeletedUser
+     */
+    omit?: DeletedUserOmit<ExtArgs> | null
+    /**
+     * Filter, which DeletedUser to fetch.
+     */
+    where?: DeletedUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DeletedUsers to fetch.
+     */
+    orderBy?: DeletedUserOrderByWithRelationInput | DeletedUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DeletedUsers.
+     */
+    cursor?: DeletedUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DeletedUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DeletedUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DeletedUsers.
+     */
+    distinct?: DeletedUserScalarFieldEnum | DeletedUserScalarFieldEnum[]
+  }
+
+  /**
+   * DeletedUser findMany
+   */
+  export type DeletedUserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DeletedUser
+     */
+    select?: DeletedUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DeletedUser
+     */
+    omit?: DeletedUserOmit<ExtArgs> | null
+    /**
+     * Filter, which DeletedUsers to fetch.
+     */
+    where?: DeletedUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DeletedUsers to fetch.
+     */
+    orderBy?: DeletedUserOrderByWithRelationInput | DeletedUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DeletedUsers.
+     */
+    cursor?: DeletedUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DeletedUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DeletedUsers.
+     */
+    skip?: number
+    distinct?: DeletedUserScalarFieldEnum | DeletedUserScalarFieldEnum[]
+  }
+
+  /**
+   * DeletedUser create
+   */
+  export type DeletedUserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DeletedUser
+     */
+    select?: DeletedUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DeletedUser
+     */
+    omit?: DeletedUserOmit<ExtArgs> | null
+    /**
+     * The data needed to create a DeletedUser.
+     */
+    data: XOR<DeletedUserCreateInput, DeletedUserUncheckedCreateInput>
+  }
+
+  /**
+   * DeletedUser createMany
+   */
+  export type DeletedUserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DeletedUsers.
+     */
+    data: DeletedUserCreateManyInput | DeletedUserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DeletedUser update
+   */
+  export type DeletedUserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DeletedUser
+     */
+    select?: DeletedUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DeletedUser
+     */
+    omit?: DeletedUserOmit<ExtArgs> | null
+    /**
+     * The data needed to update a DeletedUser.
+     */
+    data: XOR<DeletedUserUpdateInput, DeletedUserUncheckedUpdateInput>
+    /**
+     * Choose, which DeletedUser to update.
+     */
+    where: DeletedUserWhereUniqueInput
+  }
+
+  /**
+   * DeletedUser updateMany
+   */
+  export type DeletedUserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DeletedUsers.
+     */
+    data: XOR<DeletedUserUpdateManyMutationInput, DeletedUserUncheckedUpdateManyInput>
+    /**
+     * Filter which DeletedUsers to update
+     */
+    where?: DeletedUserWhereInput
+    /**
+     * Limit how many DeletedUsers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DeletedUser upsert
+   */
+  export type DeletedUserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DeletedUser
+     */
+    select?: DeletedUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DeletedUser
+     */
+    omit?: DeletedUserOmit<ExtArgs> | null
+    /**
+     * The filter to search for the DeletedUser to update in case it exists.
+     */
+    where: DeletedUserWhereUniqueInput
+    /**
+     * In case the DeletedUser found by the `where` argument doesn't exist, create a new DeletedUser with this data.
+     */
+    create: XOR<DeletedUserCreateInput, DeletedUserUncheckedCreateInput>
+    /**
+     * In case the DeletedUser was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DeletedUserUpdateInput, DeletedUserUncheckedUpdateInput>
+  }
+
+  /**
+   * DeletedUser delete
+   */
+  export type DeletedUserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DeletedUser
+     */
+    select?: DeletedUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DeletedUser
+     */
+    omit?: DeletedUserOmit<ExtArgs> | null
+    /**
+     * Filter which DeletedUser to delete.
+     */
+    where: DeletedUserWhereUniqueInput
+  }
+
+  /**
+   * DeletedUser deleteMany
+   */
+  export type DeletedUserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DeletedUsers to delete
+     */
+    where?: DeletedUserWhereInput
+    /**
+     * Limit how many DeletedUsers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DeletedUser without action
+   */
+  export type DeletedUserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DeletedUser
+     */
+    select?: DeletedUserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DeletedUser
+     */
+    omit?: DeletedUserOmit<ExtArgs> | null
   }
 
 
@@ -5963,10 +6973,22 @@ export namespace Prisma {
     lastname: 'lastname',
     email: 'email',
     password: 'password',
-    phone: 'phone'
+    phone: 'phone',
+    isdeactivated: 'isdeactivated'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const DeletedUserScalarFieldEnum: {
+    id: 'id',
+    firstname: 'firstname',
+    lastname: 'lastname',
+    email: 'email',
+    phone: 'phone'
+  };
+
+  export type DeletedUserScalarFieldEnum = (typeof DeletedUserScalarFieldEnum)[keyof typeof DeletedUserScalarFieldEnum]
 
 
   export const FlightScalarFieldEnum: {
@@ -6042,6 +7064,16 @@ export namespace Prisma {
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
 
 
+  export const DeletedUserOrderByRelevanceFieldEnum: {
+    firstname: 'firstname',
+    lastname: 'lastname',
+    email: 'email',
+    phone: 'phone'
+  };
+
+  export type DeletedUserOrderByRelevanceFieldEnum = (typeof DeletedUserOrderByRelevanceFieldEnum)[keyof typeof DeletedUserOrderByRelevanceFieldEnum]
+
+
   export const FlightOrderByRelevanceFieldEnum: {
     airline: 'airline',
     class: 'class',
@@ -6098,6 +7130,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -6124,6 +7163,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
+    isdeactivated?: BoolFilter<"User"> | boolean
   }
 
   export type UserOrderByWithRelationInput = {
@@ -6133,6 +7173,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    isdeactivated?: SortOrder
     _relevance?: UserOrderByRelevanceInput
   }
 
@@ -6146,6 +7187,7 @@ export namespace Prisma {
     lastname?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
+    isdeactivated?: BoolFilter<"User"> | boolean
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -6155,6 +7197,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    isdeactivated?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -6172,6 +7215,62 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     phone?: StringWithAggregatesFilter<"User"> | string
+    isdeactivated?: BoolWithAggregatesFilter<"User"> | boolean
+  }
+
+  export type DeletedUserWhereInput = {
+    AND?: DeletedUserWhereInput | DeletedUserWhereInput[]
+    OR?: DeletedUserWhereInput[]
+    NOT?: DeletedUserWhereInput | DeletedUserWhereInput[]
+    id?: IntFilter<"DeletedUser"> | number
+    firstname?: StringFilter<"DeletedUser"> | string
+    lastname?: StringFilter<"DeletedUser"> | string
+    email?: StringFilter<"DeletedUser"> | string
+    phone?: StringFilter<"DeletedUser"> | string
+  }
+
+  export type DeletedUserOrderByWithRelationInput = {
+    id?: SortOrder
+    firstname?: SortOrder
+    lastname?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    _relevance?: DeletedUserOrderByRelevanceInput
+  }
+
+  export type DeletedUserWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: DeletedUserWhereInput | DeletedUserWhereInput[]
+    OR?: DeletedUserWhereInput[]
+    NOT?: DeletedUserWhereInput | DeletedUserWhereInput[]
+    firstname?: StringFilter<"DeletedUser"> | string
+    lastname?: StringFilter<"DeletedUser"> | string
+    email?: StringFilter<"DeletedUser"> | string
+    phone?: StringFilter<"DeletedUser"> | string
+  }, "id">
+
+  export type DeletedUserOrderByWithAggregationInput = {
+    id?: SortOrder
+    firstname?: SortOrder
+    lastname?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    _count?: DeletedUserCountOrderByAggregateInput
+    _avg?: DeletedUserAvgOrderByAggregateInput
+    _max?: DeletedUserMaxOrderByAggregateInput
+    _min?: DeletedUserMinOrderByAggregateInput
+    _sum?: DeletedUserSumOrderByAggregateInput
+  }
+
+  export type DeletedUserScalarWhereWithAggregatesInput = {
+    AND?: DeletedUserScalarWhereWithAggregatesInput | DeletedUserScalarWhereWithAggregatesInput[]
+    OR?: DeletedUserScalarWhereWithAggregatesInput[]
+    NOT?: DeletedUserScalarWhereWithAggregatesInput | DeletedUserScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"DeletedUser"> | number
+    firstname?: StringWithAggregatesFilter<"DeletedUser"> | string
+    lastname?: StringWithAggregatesFilter<"DeletedUser"> | string
+    email?: StringWithAggregatesFilter<"DeletedUser"> | string
+    phone?: StringWithAggregatesFilter<"DeletedUser"> | string
   }
 
   export type FlightWhereInput = {
@@ -6450,6 +7549,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    isdeactivated?: boolean
   }
 
   export type UserUncheckedCreateInput = {
@@ -6459,6 +7559,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    isdeactivated?: boolean
   }
 
   export type UserUpdateInput = {
@@ -6467,6 +7568,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    isdeactivated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateInput = {
@@ -6476,6 +7578,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    isdeactivated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserCreateManyInput = {
@@ -6485,6 +7588,7 @@ export namespace Prisma {
     email: string
     password: string
     phone: string
+    isdeactivated?: boolean
   }
 
   export type UserUpdateManyMutationInput = {
@@ -6493,6 +7597,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    isdeactivated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -6501,6 +7606,60 @@ export namespace Prisma {
     lastname?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    isdeactivated?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type DeletedUserCreateInput = {
+    firstname: string
+    lastname: string
+    email: string
+    phone: string
+  }
+
+  export type DeletedUserUncheckedCreateInput = {
+    id?: number
+    firstname: string
+    lastname: string
+    email: string
+    phone: string
+  }
+
+  export type DeletedUserUpdateInput = {
+    firstname?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DeletedUserUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firstname?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DeletedUserCreateManyInput = {
+    id?: number
+    firstname: string
+    lastname: string
+    email: string
+    phone: string
+  }
+
+  export type DeletedUserUpdateManyMutationInput = {
+    firstname?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DeletedUserUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firstname?: StringFieldUpdateOperationsInput | string
+    lastname?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
   }
 
@@ -6812,6 +7971,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type UserOrderByRelevanceInput = {
     fields: UserOrderByRelevanceFieldEnum | UserOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -6825,6 +7989,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    isdeactivated?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -6838,6 +8003,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    isdeactivated?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -6847,6 +8013,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     phone?: SortOrder
+    isdeactivated?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -6885,6 +8052,52 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DeletedUserOrderByRelevanceInput = {
+    fields: DeletedUserOrderByRelevanceFieldEnum | DeletedUserOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type DeletedUserCountOrderByAggregateInput = {
+    id?: SortOrder
+    firstname?: SortOrder
+    lastname?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+  }
+
+  export type DeletedUserAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type DeletedUserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    firstname?: SortOrder
+    lastname?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+  }
+
+  export type DeletedUserMinOrderByAggregateInput = {
+    id?: SortOrder
+    firstname?: SortOrder
+    lastname?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+  }
+
+  export type DeletedUserSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -7151,6 +8364,10 @@ export namespace Prisma {
     set?: string
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -7197,6 +8414,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -7240,6 +8462,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {

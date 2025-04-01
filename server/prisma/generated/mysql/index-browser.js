@@ -123,6 +123,15 @@ exports.Prisma.UserScalarFieldEnum = {
   lastname: 'lastname',
   email: 'email',
   password: 'password',
+  phone: 'phone',
+  isdeactivated: 'isdeactivated'
+};
+
+exports.Prisma.DeletedUserScalarFieldEnum = {
+  id: 'id',
+  firstname: 'firstname',
+  lastname: 'lastname',
+  email: 'email',
   phone: 'phone'
 };
 
@@ -181,6 +190,13 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   phone: 'phone'
 };
 
+exports.Prisma.DeletedUserOrderByRelevanceFieldEnum = {
+  firstname: 'firstname',
+  lastname: 'lastname',
+  email: 'email',
+  phone: 'phone'
+};
+
 exports.Prisma.FlightOrderByRelevanceFieldEnum = {
   airline: 'airline',
   class: 'class',
@@ -208,6 +224,7 @@ exports.Prisma.OrderOrderByRelevanceFieldEnum = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  DeletedUser: 'DeletedUser',
   Flight: 'Flight',
   Transport: 'Transport',
   Hotel: 'Hotel',

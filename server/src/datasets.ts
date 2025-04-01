@@ -6,6 +6,7 @@ export type User = {
     email: string;
     password: string;
     phone: string;
+    isdeleted:boolean;
   };
   
   type Flight = {
