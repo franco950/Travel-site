@@ -5,7 +5,7 @@ Destinations and user reviews are stored in mongodb database with flights, hotel
 Prisma orm for both mongodb and mysql.
 Passport.js for auth.
  
-1. **Features** 
+1. **Features**\n 
 The site includes: A Destinations page, where users can see available destinations and click one for further details.
 Descriptions page- for each destination,  (images and user reviews UI under development)
 
@@ -25,7 +25,7 @@ User profile- users with accounts are able to edit and delete their account deta
                    Some sort of reward system to encourage users to be recurring customers. 
 
                    
-2. **Security**
+2. **Security**\n
 User passwords are encrypted before storage using bcrypt. 
 Password policies are enforced. 
 
