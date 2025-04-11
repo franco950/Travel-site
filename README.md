@@ -29,7 +29,7 @@ User profile- users with accounts are able to edit and delete their account deta
 User passwords are encrypted before storage using bcrypt. 
 Password policies are enforced. 
 
-Authentication and Authorisation.
+Authentication and Authorisation:
  Sessions are created once users log in.
  The backend APIs that require login have auth middleware that checks session status.
  The frontend also has protected routes which redirect users to login once they try to access components that require login.
