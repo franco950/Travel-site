@@ -6,13 +6,17 @@ Prisma orm for both mongodb and mysql.
 Passport.js for auth.
  
 1.Features. 
-The site includes: A Destinations page, where users can see availavle destinations and click one for further details.
-                  Descriptions page- for each destination,  (images and user reviews UI under development)
-                  Booking page- where the user can choose from a list of available flights, transportation and hotels for their chosen destination.
-                                Users are able to see prices for their selected options and the total cost for the entire trip.
-                  Order page- for finalising their order. Users are required to login to access this page.
-                  User profile- users with accounts are able to edit and delete their account details         
-Booking data is stored in localstorage.
+The site includes: A Destinations page, where users can see available destinations and click one for further details.
+Descriptions page- for each destination,  (images and user reviews UI under development)
+
+Booking page- where the user can choose from a list of available flights, transportation and hotels for their chosen destination.
+Users are able to see prices for their selected options and the total cost for the entire trip. Booking data is stored in localstorage.
+              
+Order page- for finalising their order. Users are required to login to access this page.
+
+User profile- users with accounts are able to edit and delete their account details.  
+
+
 
  *upcoming features include: 
                    Admin dashboard with role-based access control.
