@@ -21,8 +21,8 @@ Booking data is stored in localstorage.
                    Some sort of reward system to encourage users to be recurring customers.
 
                    
-2.Security
-User passwords are encryypted before storage using bcrypt.
+2.Security:
+User passwords are encrypted before storage using bcrypt.
 Password policies are enforced.
 
 Authentication and Authorisation
